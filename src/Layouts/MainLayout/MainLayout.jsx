@@ -1,6 +1,7 @@
+//importing components
 import { NavBar } from "../../components/NavBar/NavBar"
 
-
+//Layout with all things , navbar, links, title
 export const MainLayout = () => {
 
     return (
