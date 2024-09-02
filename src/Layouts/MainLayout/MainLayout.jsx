@@ -1,10 +1,14 @@
+import { NavBar } from "../../components/NavBar/NavBar"
 
 
 export const MainLayout = () => {
 
     return (
-        <div className="container-fluid m-3">
-            <h1 className="display fw-bold text-center">Auction App</h1>
+        <div className="container-fluid">
+            <h1 className="display-4 fw-bold text-center p-3">Auction App</h1>
+            
+            <NavBar/>
+
         </div>
     )
 }
