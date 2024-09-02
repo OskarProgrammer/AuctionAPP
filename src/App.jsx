@@ -11,10 +11,16 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 //importing layouts
 import {MainLayout} from "./Layouts/MainLayout/MainLayout"
 
+//importing pages
+import {MainPage} from "./pages/MainPage/MainPage"
+
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<MainLayout/>}>
-
+    
+      {/* route --> '/' with element <MainPage/>*/}
+      <Route index element={<MainPage/>}/>
+  
   </Route>
 ))
 
