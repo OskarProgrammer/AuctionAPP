@@ -6,6 +6,8 @@ import './App.css'
 
 //importing bootstrap
 import 'bootstrap/dist/css/bootstrap.css'
+
+//importing functions and components from react library
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 
 //importing layouts
