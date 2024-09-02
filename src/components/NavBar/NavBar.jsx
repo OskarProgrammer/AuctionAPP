@@ -1,5 +1,6 @@
 
 //importing styles NavBar.css
+import { NavLink } from "react-router-dom"
 import "./NavBar.css"
 
 // nav bar used in src/Layouts/MainLayout/MainLayout.jsx
@@ -12,9 +13,13 @@ export const NavBar = () => {
 
             {/* left side of the navbar */}
             <div className="col-6">
-                <button className="btn btn-outline-dark">
+
+                {/* button to the '/' route */}
+                <NavLink to="/" className="btn btn-outline-dark">
+                    {/* home icon from bootstrap page */}
                     <i class="bi bi-house fs-2"/>
-                </button>
+                </NavLink>
+
             </div>
 
             {/*  right side of the navbar */}
