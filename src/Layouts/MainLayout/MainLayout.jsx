@@ -12,7 +12,6 @@ export const MainLayout = () => {
 
     // getting data from loader function
     const loaderData = useLoaderData()
-    console.log(loaderData);
 
 
     return (
