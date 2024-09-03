@@ -15,6 +15,7 @@ import {MainLayout} from "./Layouts/MainLayout/MainLayout"
 
 //importing pages
 import {MainPage} from "./pages/MainPage/MainPage"
+import {LoginPage} from "./pages/LoginPage/LoginPage"
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
@@ -22,7 +23,10 @@ const router = createBrowserRouter(createRoutesFromElements(
     
       {/* route --> '/' with element <MainPage/>*/}
       <Route index element={<MainPage/>}/>
-  
+
+      {/* route --> '/login' with element <LoginPage/> */}
+      <Route path="/login" element={<LoginPage/>}/>
+
   </Route>
 ))
 
