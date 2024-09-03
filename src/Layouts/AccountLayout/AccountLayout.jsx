@@ -17,10 +17,22 @@ export const AccountLayout = () => {
             <div className="col-1 bg-light d-flex flex-column gap-3 p-3 shadow-lg border border-dark rounded sideBar">
                 
                 {/* balance money button */}
-                <NavLink to="" className="btn btn-outline-dark icon-30" >
+                <NavLink to="/account/accountBalance" className="btn btn-outline-dark icon-30" >
+                    {/* bank icon from bootstrap icons */}
                     <i className="bi bi-bank"/>
                 </NavLink>
 
+                {/* auctions list button */}
+                <NavLink to="" className="btn btn-outline-dark icon-30" >
+                    {/* list icon from bootstrap icons */}
+                    <i class="bi bi-card-list"/>
+                </NavLink>
+
+                {/* user settings button */}
+                <NavLink to="" className="btn btn-outline-dark icon-30" >
+                    {/* person icon from bootstrap icons */}
+                    <i class="bi bi-person"/>
+                </NavLink>
 
             </div>
 
