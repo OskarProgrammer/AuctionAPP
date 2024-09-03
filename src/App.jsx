@@ -15,7 +15,7 @@ import {MainLayout} from "./Layouts/MainLayout/MainLayout"
 
 //importing pages
 import {MainPage} from "./pages/MainPage/MainPage"
-import {LoginPage} from "./pages/LoginPage/LoginPage"
+import {loginAction, LoginPage} from "./pages/LoginPage/LoginPage"
 import { registerAction, RegisterPage } from './pages/RegisterPage/RegisterPage'
 
 //creating routes
@@ -25,8 +25,8 @@ const router = createBrowserRouter(createRoutesFromElements(
       {/* route --> '/' with element <MainPage/>*/}
       <Route index element={<MainPage/>}/>
 
-      {/* route --> '/login' with element <LoginPage/> */}
-      <Route path="/login" element={<LoginPage/>}/>
+      {/* route --> '/login' with element <LoginPage/> , action 'loginAction' */}
+      <Route path="/login" element={<LoginPage/>} action={loginAction}/>
 
       {/* route --> '/register' with element <RegisterPage/> , action 'registerAction' */}
       <Route path="/register" element={<RegisterPage/>} action={registerAction}/>
