@@ -6,13 +6,13 @@ import { getRequest } from "../../api_functions/functions"
 
 //importing components and functions
 import { Outlet, useLoaderData } from "react-router-dom"
+import { useEffect } from "react"
 
 //Layout with all things , navbar, links, title
 export const MainLayout = () => {
 
     // getting data from loader function
-    const loaderData = useLoaderData()
-
+    let loaderData = useLoaderData()
 
     return (
         <div className="container-fluid">
