@@ -10,9 +10,9 @@ export const AccountLayout = () => {
 
     return (
         <>
-            <div className="container-fluid">
-                <Outlet/>
-            </div>
+
+            <Outlet/>
+
         </>
     )
 }
