@@ -19,6 +19,7 @@ import {loginAction, LoginPage} from "./pages/LoginPage/LoginPage"
 import { registerAction, RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { AccountLayout } from './Layouts/AccountLayout/AccountLayout'
 import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
+import { AccountPage } from './pages/AccountPage/AccountPage'
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
@@ -36,6 +37,9 @@ const router = createBrowserRouter(createRoutesFromElements(
       {/* route --> '/account' layout with element <AccountLayout/> */}
       <Route path="/account/" element={<AccountLayout/>} >
           
+          {/* route --> '/account/' with element <AccountPage/>  */}
+          <Route index element={<AccountPage/>}/>
+
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
 
