@@ -1,11 +1,20 @@
 // importing functions and components from react library
-import { Form, Link } from "react-router-dom"
+import { Form, Link, redirect, useActionData } from "react-router-dom"
+
 
 //importing styles 
 import "./RegisterPage.css"
 
+
+//importing API
+import { getRequest, postRequest } from "../../api_functions/functions"
+
+
 // login page in which user can log into the system
 export const RegisterPage = () => {
+
+    // getting data from action form , if error occured
+    const actionData = useActionData()
 
 
     return (
@@ -16,7 +25,7 @@ export const RegisterPage = () => {
             pass => password
             -- => repeatedPassword
         */
-        <Form className=" mt-5 container-lg col-lg-5 col-12 bg-light d-flex flex-column gap-2 text-center p-3 shadow-lg rounded">
+        <Form method="POST" action="/register" className=" mt-5 container-lg col-lg-5 col-12 bg-light d-flex flex-column gap-2 text-center p-3 shadow-lg rounded">
         
 
             {/* header of the form*/}
@@ -37,6 +46,9 @@ export const RegisterPage = () => {
                 {/* redirection if useer havent got account */}
                 <p className="">Have got account already? <Link to="/login" className="text-dark linkParagraph">Click here</Link></p>
 
+                {/* displaying error message if exist */}
+                {actionData && actionData.error && <p className="text-danger fw-bold"> {actionData.error} </p>}
+
                 {/* button to submit the data */}
                 <button className="btn btn-outline-success col-6 mx-auto">Sign up</button>
                 
@@ -46,4 +58,68 @@ export const RegisterPage = () => {
         </Form>
 
     )
+}
+
+
+// action form of route '/register' 
+export const registerAction = async ( {request} ) => {
+
+    // getting data from form
+    const data = await request.formData()
+
+    // getting login field from form
+    const login = data.get("login")
+    
+    // getting password field from form
+    const password = data.get("password")
+
+    // getting repeatedPassword field from form
+    const repeatedPassword = data.get("repeatedPassword")
+
+    // checking if login , password or repeatedPassword is null
+    if (login == "" || password == "" || repeatedPassword == ""){
+
+        // returning error message 'All fields must be provided'
+        return { error : "All fields must be provided"}
+
+    }
+
+    // checking if password and repeatedPassword are the same
+    if (password != repeatedPassword) {
+
+        //returning error message 'Repeated password and password must be the same'
+        return { error : "Repeated password and password must be the same"}
+
+    }
+
+
+    // getting users data from endpoint 'http://localhost:3000/users/'
+    const users = await getRequest("http://localhost:3000/users/")
+
+
+    // checking if login exists in users table
+    if (users.some(e => e.login === login)) {
+
+        // returning error message 'This login is already taken'
+        return { error : "This login is already taken"}
+
+    }
+
+    // creating new object of user
+    const newUser = {
+        id : crypto.randomUUID(),
+        login : login,
+        password: password
+    }
+
+    // posting data to 'users' table
+    try {
+        await postRequest("http://localhost:3000/users/", newUser)
+    } catch {
+        // returning error message 'Something went wrong during creating user'
+        return { error : "Something went wrong during creating user"}
+    }
+
+    // redirecting to the main page if everything is successfully done
+    return redirect("/")
 }
