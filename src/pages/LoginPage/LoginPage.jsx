@@ -12,6 +12,7 @@ export const LoginPage = () => {
     return (
 
         /* form
+            in db.json => in form
             login => login
             password => password
         */
