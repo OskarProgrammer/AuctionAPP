@@ -19,7 +19,7 @@ import {loginAction, LoginPage} from "./pages/LoginPage/LoginPage"
 import { registerAction, RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { AccountLayout, accountLayoutLoader } from './Layouts/AccountLayout/AccountLayout'
 import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
-import { AccountPage } from './pages/AccountPage/AccountPage'
+import { accountLoader, AccountPage } from './pages/AccountPage/AccountPage'
 import { accountBalanceLoader, AccountBalancePage } from './pages/AccountBalancePage/AccountBalancePage'
 import { auctionListLoader, AuctionListPage } from "./pages/AuctionListPage/AuctionListPage"
 
@@ -39,8 +39,8 @@ const router = createBrowserRouter(createRoutesFromElements(
       {/* route --> '/account' layout with element <AccountLayout/> , loader 'accountLayoutLoader' */}
       <Route path="/account/" element={<AccountLayout/>} loader={accountLayoutLoader}>
           
-          {/* route --> '/account/' with element <AccountPage/>  */}
-          <Route index element={<AccountPage/>}/>
+          {/* route --> '/account/' with element <AccountPage/> , loader 'accountLoader' */}
+          <Route index element={<AccountPage/>} loader={accountLoader}/>
 
           {/* route --> '/account/accountBalance with element <AccountBalancePage/>, loader 'accountBalanceLoader' */}
           <Route path="accountBalance" element={<AccountBalancePage/>} loader={accountBalanceLoader}/>
