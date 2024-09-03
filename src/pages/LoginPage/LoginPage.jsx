@@ -8,13 +8,13 @@ import "./LoginPage.css"
 // login page in which user can log into the system
 export const LoginPage = () => {
 
-    // preview version of page
+
     return (
 
         /* form
             in db.json => in form
             login => login
-            password => password
+            pass => password
         */
         <Form className=" mt-5 container-lg col-lg-5 col-12 bg-light d-flex flex-column gap-2 text-center p-3 shadow-lg rounded">
         
@@ -31,8 +31,8 @@ export const LoginPage = () => {
                 {/* password input with name='password' */}
                 <input type="password" name="password" placeholder="Password" className="p-2 fs-5 text-center shadow-lg border-0"/>
 
-                {/* redirection if useer havent got account */}
-                <p className="">Havent got account yet? <Link className="text-dark linkParagraph">Click here</Link></p>
+                {/* redirection if user havent got account */}
+                <p className="">Havent got account yet? <Link to="/register" className="text-dark linkParagraph">Click here</Link></p>
 
                 {/* button to submit the data */}
                 <button className="btn btn-outline-success col-6 mx-auto">Sign in</button>
