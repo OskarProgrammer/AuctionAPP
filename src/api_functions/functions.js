@@ -25,6 +25,24 @@ export const getRequest = async (endpoint) => {
     return data.json()
 }
 
+//function getCurrentUserInfo is getting data about current user
+export const getCurrentUserInfo = async () => {
+    // getting id of current user
+    const { id } = await getRequest("http://localhost:3000/currentUser/")
+    
+    // getting all users
+    const users = await getRequest("http://localhost:3000/users/")
+
+    // looking for current user id
+    const i = users.findIndex(e => e.id === id )
+    
+    // declaring and initializing currentUserData tuple
+    let currentUserData = users[i]
+
+    // returning data
+    return currentUserData
+}
+
 
 // POST REQUESTS
 
