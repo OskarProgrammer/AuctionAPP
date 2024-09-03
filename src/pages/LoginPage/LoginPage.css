@@ -1,0 +1,9 @@
+.linkParagraph {
+    transition: 0.5s ease;
+    text-decoration: none; 
+}
+
+.linkParagraph:hover {
+    color: rgb(159, 138, 215) !important;
+    text-decoration: underline;
+}
