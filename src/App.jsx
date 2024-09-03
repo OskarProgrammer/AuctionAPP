@@ -20,7 +20,8 @@ import { registerAction, RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { AccountLayout, accountLayoutLoader } from './Layouts/AccountLayout/AccountLayout'
 import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
 import { AccountPage } from './pages/AccountPage/AccountPage'
-import { AccountBalancePage } from './pages/AccountBalancePage/AccountBalancePage'
+import { accountBalanceLoader, AccountBalancePage } from './pages/AccountBalancePage/AccountBalancePage'
+import { auctionListLoader, AuctionListPage } from "./pages/AuctionListPage/AuctionListPage"
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
@@ -41,8 +42,11 @@ const router = createBrowserRouter(createRoutesFromElements(
           {/* route --> '/account/' with element <AccountPage/>  */}
           <Route index element={<AccountPage/>}/>
 
-          {/* route --> '/account/accountBalance with element <AccountBalancePage/> */}
-          <Route path="accountBalance" element={<AccountBalancePage/>}/>
+          {/* route --> '/account/accountBalance with element <AccountBalancePage/>, loader 'accountBalanceLoader' */}
+          <Route path="accountBalance" element={<AccountBalancePage/>} loader={accountBalanceLoader}/>
+
+          {/* route --> '/account/auctionList with element <AuctionListPage/> , loader 'auctionListLoader' */}
+          <Route path="auctionList" element={<AuctionListPage/>} loader={auctionListLoader}/>
 
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
