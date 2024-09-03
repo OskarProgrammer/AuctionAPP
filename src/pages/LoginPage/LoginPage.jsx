@@ -11,11 +11,14 @@ export const LoginPage = () => {
     // preview version of page
     return (
 
-        // form
+        /* form
+            login => login
+            password => password
+        */
         <Form className=" mt-5 container-lg col-lg-5 col-12 bg-light d-flex flex-column gap-2 text-center p-3 shadow-lg rounded">
         
 
-            {/* header of the form */}
+            {/* header of the form*/}
             <h2 className="display-4">Login form</h2>
 
             {/* container with all inputs and buttons that is in the center of the form and take half space */}
