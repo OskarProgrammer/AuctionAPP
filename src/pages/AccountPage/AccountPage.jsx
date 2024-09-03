@@ -6,11 +6,15 @@ import { useEffect, useState } from "react"
 
 //importing api functions
 import { getCurrentUserInfo } from "../../api_functions/functions"
-import { Link } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
 
 export const AccountPage = () => {
 
-    let [userData, setUserData] = useState({})
+    //getting loader data
+    const loaderData = useLoaderData()
+
+    // declaring and initlazing useState variable
+    let [userData, setUserData] = useState(loaderData)
 
     useEffect(()=>{
         // declaring interval
@@ -35,4 +39,13 @@ export const AccountPage = () => {
             </div>
         </div>
     )
+}
+
+// loader function
+export const accountLoader = async () => {
+    // getting current user data
+    const currentUser = await getCurrentUserInfo()
+
+    // returning currentUser
+    return currentUser
 }
