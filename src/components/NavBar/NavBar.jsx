@@ -1,13 +1,30 @@
 
 //importing functions and components from react library
 import { NavLink } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 // importing styles
 import "./NavBar.css"
+import { getRequest } from "../../api_functions/functions"
 
 
 // nav bar used in src/Layouts/MainLayout/MainLayout.jsx
 export const NavBar = (props) => {
+    
+    // creating dynamic variable of props.currentUser.isLogged to create dynamic changes of navbar
+    let [state, setState] = useState(props.currentUser.isLogged)
+
+
+    // setting the interval that get the data from 'http://localhost:3000/currentUser/' every milisecond
+    useEffect(()=>{ 
+        const interval = setInterval(async () => {
+            const data = await getRequest('http://localhost:3000/currentUser/') 
+            setState( data.isLogged )
+        }, 1);
+
+        return () => { clearInterval(interval) }
+    }, [])
+    
 
     return (
         // nav bar
@@ -28,7 +45,7 @@ export const NavBar = (props) => {
             <div className="col-6 d-flex justify-content-end gap-3 ">
 
                 {/* rendering if user is not logged in */}
-                {!props.currentUser.isLogged ? 
+                {!state ? 
                     <>
                         {/* button to the '/login' route  */}
                         <NavLink to="/login" className="btn btn-outline-dark fw-bold d-flex">
@@ -42,10 +59,10 @@ export const NavBar = (props) => {
                     </> : ""}
 
                 {/*  rendering if user is logged in */}
-                {props.currentUser.isLogged ? 
+                {state ? 
                     <>
                         {/* button to the '/account/logOut' route  */}
-                        <NavLink to="" className="btn btn-outline-danger fw-bold d-flex">
+                        <NavLink to="/account/logOut" className="btn btn-outline-danger fw-bold d-flex">
                             <p className="my-auto">Log out</p>
                         </NavLink>
                     </> : ""}
