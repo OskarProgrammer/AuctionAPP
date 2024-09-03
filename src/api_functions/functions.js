@@ -1,4 +1,7 @@
 
+// GET REQUESTS
+
+
 // function getRequest is getting data from given endpoint param
 export const getRequest = async (endpoint) => {
 
@@ -20,4 +23,30 @@ export const getRequest = async (endpoint) => {
 
     // returning data in json format
     return data.json()
+}
+
+
+// POST REQUESTS
+
+export const postRequest = async (endpoint, payload) => {
+
+    // creating request options object to implement the body, headers and method of the request
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    }
+
+    //sending request
+    try {
+
+        // posting data to endpoint with given payload
+        await fetch ( endpoint , requestOptions)
+        
+    } catch {
+
+        //throwing error if occurs
+        throw new Error(`Error during posting data to ${endpoint} with payload ${payload}`)
+
+    }
 }
