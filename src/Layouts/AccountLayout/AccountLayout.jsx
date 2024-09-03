@@ -1,8 +1,9 @@
 // importing styles
+import { getRequest } from "../../api_functions/functions"
 import "./AccountLayout.css"
 
 //importing functions and components from react library
-import { NavLink, Outlet } from "react-router-dom"
+import { NavLink, Outlet, redirect } from "react-router-dom"
 
 
 export const AccountLayout = () => {
@@ -30,4 +31,20 @@ export const AccountLayout = () => {
 
         </div>
     )
+}
+
+
+// loader that saves from uncontrolled going to routes '/account/*'
+export const accountLayoutLoader = async () => {
+
+    // getting current user tuple from endpoint 'http://localhost:3000/currentUser/'
+    const currentUser = await getRequest('http://localhost:3000/currentUser/')
+
+    // checking if there is logged user
+    if (!currentUser.isLogged){
+        // redirecting to main route '/'
+        return redirect("/")   
+    }
+
+    return null
 }
