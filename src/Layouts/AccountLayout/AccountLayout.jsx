@@ -23,7 +23,7 @@ export const AccountLayout = () => {
                 </NavLink>
 
                 {/* auctions list button */}
-                <NavLink to="" className="btn btn-outline-dark icon-30" >
+                <NavLink to="/account/auctionList" className="btn btn-outline-dark icon-30" >
                     {/* list icon from bootstrap icons */}
                     <i class="bi bi-card-list"/>
                 </NavLink>
