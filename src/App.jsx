@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 
 //importing layouts
-import {MainLayout} from "./Layouts/MainLayout/MainLayout"
+import {MainLayout, mainLayoutLoader} from "./Layouts/MainLayout/MainLayout"
 
 //importing pages
 import {MainPage} from "./pages/MainPage/MainPage"
@@ -20,9 +20,9 @@ import { registerAction, RegisterPage } from './pages/RegisterPage/RegisterPage'
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<MainLayout/>}>
+  <Route path="/" element={<MainLayout/>} loader={mainLayoutLoader} >
     
-      {/* route --> '/' with element <MainPage/>*/}
+      {/* route --> '/' with element <MainPage/> */}
       <Route index element={<MainPage/>}/>
 
       {/* route --> '/login' with element <LoginPage/> , action 'loginAction' */}
