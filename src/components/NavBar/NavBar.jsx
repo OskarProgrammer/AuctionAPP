@@ -31,13 +31,21 @@ export const NavBar = (props) => {
         <div className="container-fluid d-flex bg-light border border-1 border-dark shadow-lg p-3 rounded">
 
             {/* left side of the navbar */}
-            <div className="col-6">
+            <div className="col-6 d-flex gap-3">
 
                 {/* button to the '/' route */}
                 <NavLink to="/" className="btn btn-outline-dark">
                     {/* home icon from bootstrap page */}
                     <i className="bi bi-house fs-2"/>
                 </NavLink>
+
+                {/* button to the '/account/' route */}
+                {state ? 
+                    <NavLink to="/account/" className="btn btn-outline-dark">
+                        {/* settings icon from bootstrap page */}
+                        <i class="bi bi-gear fs-2" />
+                    </NavLink> 
+                : ""}
 
             </div>
 
