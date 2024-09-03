@@ -24,9 +24,12 @@ export const NavBar = () => {
 
             {/*  right side of the navbar */}
             <div className="col-6 d-flex justify-content-end gap-3 ">
-                <button className="btn btn-outline-dark fw-bold">
-                    Sign in
-                </button>
+
+                {/* button to the '/login' route */}
+                <NavLink to="/login" className="btn btn-outline-dark fw-bold d-flex">
+                    <p className="my-auto">Sign in</p>
+                </NavLink>
+
                 <button className="btn btn-outline-dark fw-bold">
                     Sign up
                 </button>
