@@ -2,10 +2,11 @@
 import "./AccountPage.css"
 
 //importing functions and components from react library
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 //importing api functions
 import { getCurrentUserInfo } from "../../api_functions/functions"
+import { Link } from "react-router-dom"
 
 export const AccountPage = () => {
 
@@ -25,8 +26,13 @@ export const AccountPage = () => {
     })
 
     return (
-        <>
-            ACCOUNT PAGE
-        </>
+        <div className="container-fluid text-center p-3 d-flex flex-column gap-4">
+            <h1 className="display-5 fw-bold ">Welcome {userData.login} !</h1>
+            <div className="col-6 bg-light mx-auto shadow-lg p-3">
+                <h3 className="display-6">Account Info</h3>
+                <p className="fs-5"> Balance : {userData.balance}</p>
+                <Link className="btn btn-outline-success">Top up</Link>
+            </div>
+        </div>
     )
 }
