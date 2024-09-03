@@ -1,5 +1,8 @@
 {
-    
-    "users": []
-    
+  
+  "users": [],
+  "currentUser" : {
+     "id" : "",
+     "isLogged" : false
+  }
 }
