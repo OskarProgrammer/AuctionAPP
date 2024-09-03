@@ -27,18 +27,28 @@ export const NavBar = (props) => {
             {/*  right side of the navbar */}
             <div className="col-6 d-flex justify-content-end gap-3 ">
 
-               {!props.currentUser.isLogged ? 
-                <>
-                    {/* button to the '/login' route  */}
-                    <NavLink to="/login" className="btn btn-outline-dark fw-bold d-flex">
-                        <p className="my-auto">Sign in</p>
-                    </NavLink>
+                {/* rendering if user is not logged in */}
+                {!props.currentUser.isLogged ? 
+                    <>
+                        {/* button to the '/login' route  */}
+                        <NavLink to="/login" className="btn btn-outline-dark fw-bold d-flex">
+                            <p className="my-auto">Sign in</p>
+                        </NavLink>
 
-                    {/* button to the '/register' route  */}
-                    <NavLink to="/register" className="btn btn-outline-dark fw-bold d-flex">
-                        <p className="my-auto">Sign up</p>
-                    </NavLink>
-                </> : ""}
+                        {/* button to the '/register' route  */}
+                        <NavLink to="/register" className="btn btn-outline-dark fw-bold d-flex">
+                            <p className="my-auto">Sign up</p>
+                        </NavLink>
+                    </> : ""}
+
+                {/*  rendering if user is logged in */}
+                {props.currentUser.isLogged ? 
+                    <>
+                        {/* button to the '/account/logOut' route  */}
+                        <NavLink to="" className="btn btn-outline-danger fw-bold d-flex">
+                            <p className="my-auto">Log out</p>
+                        </NavLink>
+                    </> : ""}
                 
             </div>
 
