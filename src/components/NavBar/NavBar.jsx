@@ -1,11 +1,13 @@
 
-//importing styles NavBar.css
+//importing functions and components from react library
 import { NavLink } from "react-router-dom"
+
+// importing styles
 import "./NavBar.css"
 
-// nav bar used in src/Layouts/MainLayout/MainLayout.jsx
-export const NavBar = () => {
 
+// nav bar used in src/Layouts/MainLayout/MainLayout.jsx
+export const NavBar = (props) => {
 
     return (
         // nav bar
@@ -25,18 +27,23 @@ export const NavBar = () => {
             {/*  right side of the navbar */}
             <div className="col-6 d-flex justify-content-end gap-3 ">
 
-                {/* button to the '/login' route */}
-                <NavLink to="/login" className="btn btn-outline-dark fw-bold d-flex">
-                    <p className="my-auto">Sign in</p>
-                </NavLink>
+               {!props.currentUser.isLogged ? 
+                <>
+                    {/* button to the '/login' route  */}
+                    <NavLink to="/login" className="btn btn-outline-dark fw-bold d-flex">
+                        <p className="my-auto">Sign in</p>
+                    </NavLink>
 
-                {/* button to the '/register' route */}
-                <NavLink to="/register" className="btn btn-outline-dark fw-bold d-flex">
-                    <p className="my-auto">Sign up</p>
-                </NavLink>
+                    {/* button to the '/register' route  */}
+                    <NavLink to="/register" className="btn btn-outline-dark fw-bold d-flex">
+                        <p className="my-auto">Sign up</p>
+                    </NavLink>
+                </> : ""}
                 
             </div>
 
         </div>
     )
 }
+
+
