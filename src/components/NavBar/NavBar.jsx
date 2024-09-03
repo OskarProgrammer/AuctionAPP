@@ -30,9 +30,10 @@ export const NavBar = () => {
                     <p className="my-auto">Sign in</p>
                 </NavLink>
 
-                <button className="btn btn-outline-dark fw-bold">
-                    Sign up
-                </button>
+                {/* button to the '/register' route */}
+                <NavLink to="/register" className="btn btn-outline-dark fw-bold d-flex">
+                    <p className="my-auto">Sign up</p>
+                </NavLink>
             </div>
 
         </div>
