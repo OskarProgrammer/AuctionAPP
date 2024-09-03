@@ -17,7 +17,7 @@ export const NavBar = () => {
                 {/* button to the '/' route */}
                 <NavLink to="/" className="btn btn-outline-dark">
                     {/* home icon from bootstrap page */}
-                    <i class="bi bi-house fs-2"/>
+                    <i className="bi bi-house fs-2"/>
                 </NavLink>
 
             </div>
@@ -34,6 +34,7 @@ export const NavBar = () => {
                 <NavLink to="/register" className="btn btn-outline-dark fw-bold d-flex">
                     <p className="my-auto">Sign up</p>
                 </NavLink>
+                
             </div>
 
         </div>
