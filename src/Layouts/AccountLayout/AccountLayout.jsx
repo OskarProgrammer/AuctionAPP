@@ -10,7 +10,6 @@ export const AccountLayout = () => {
 
     return (
         <>
-            <h1 className="display-3">ACCOUNT LAYOUT</h1>
             <div className="container-fluid">
                 <Outlet/>
             </div>
