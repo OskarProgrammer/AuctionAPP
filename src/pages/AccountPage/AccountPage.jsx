@@ -23,7 +23,7 @@ export const AccountPage = () => {
             <h1 className="display-5 fw-bold ">Welcome {userData.login} !</h1>
 
 
-            <div className="col-6 bg-light mx-auto shadow-lg p-3">
+            <div className="col-lg-10 col-md-10 col-sm-11 col-12 bg-light mx-auto shadow-lg p-3">
 
                 {/* header of the subpage */}
                 <h3 className="display-6">Account Info</h3>

@@ -88,7 +88,7 @@ export const AccountBalancePage = () => {
 
             {/* form of adding funds */}
             {isExpanded ? 
-                <div className="container col-3 shadow-lg p-3 mt-3 d-flex flex-column gap-3">
+                <div className="container col-lg-4 col-md-5 col-sm-7 col-12 shadow-lg p-3 mt-3 d-flex flex-column gap-3">
 
                     {/* displaying input of balance that will be added to the balance */}
                     <input className="p-2 text-center col-6 mx-auto" type="number" value={newBalance} onChange={(e)=>{setNewBalance(e.target.value)}}/>
