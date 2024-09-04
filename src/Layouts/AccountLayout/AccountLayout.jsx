@@ -29,7 +29,7 @@ export const AccountLayout = () => {
                 </NavLink>
 
                 {/* user settings button */}
-                <NavLink to="" className="btn btn-outline-dark icon-30" >
+                <NavLink to="/account/userSettings" className="btn btn-outline-dark icon-30" >
                     {/* person icon from bootstrap icons */}
                     <i class="bi bi-person"/>
                 </NavLink>
