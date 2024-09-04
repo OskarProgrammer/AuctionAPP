@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Form, redirect, useLoaderData } from "react-router-dom"
 
 // importing api functions
-import { getCurrentUserInfo, postRequest } from "../../api_functions/functions"
+import { getCurrentUserAuctions, getCurrentUserInfo, postRequest } from "../../api_functions/functions"
 
 
 export const AuctionListPage = () => {
@@ -14,7 +14,10 @@ export const AuctionListPage = () => {
     const loaderData = useLoaderData()
 
     // initializing useState variable
-    let [currentUserData, setCurrentUserData] = useState(loaderData)
+    let [currentUserData, setCurrentUserData] = useState(loaderData[0])
+
+    // initializing useState variable
+    let [currentUserAuctions, setCurrentUserAuctions] = useState(loaderData[1])
 
     // initializing useState variable isExpanded
     let [isExpanded, setIsExpanded] = useState(false)
@@ -92,8 +95,11 @@ export const auctionListLoader = async () => {
     // getting current user data
     const currentUser = await getCurrentUserInfo()
 
-    // returning currentUser 
-    return currentUser
+    // getting current user auctions
+    const currentUserAuctions = await getCurrentUserAuctions()
+
+    // returning currentUser and currentUserAuctions
+    return [currentUser,currentUserAuctions]
 }
 
 export const auctionAction = async ( {request} ) => {
