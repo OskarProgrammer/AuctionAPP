@@ -1,8 +1,15 @@
 {
-  
-  "users": [],
-  "currentUser" : {
-     "id" : "",
-     "isLogged" : false
+  "users": [
+    {
+      "id": "6d26594f-18c6-4aca-8c36-96ce47fab598",
+      "login": "Oskar",
+      "password": "root",
+      "balance": 3154
+    }
+  ],
+  "auctions":[],
+  "currentUser": {
+    "id": "6d26594f-18c6-4aca-8c36-96ce47fab598",
+    "isLogged": true
   }
 }
