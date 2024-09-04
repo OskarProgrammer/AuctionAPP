@@ -2,7 +2,7 @@
 import "./AccountBalancePage.css"
 
 // importing api functions
-import { getCurrentUserInfo, getRequest, putRequest } from "../../api_functions/functions"
+import { getCurrentUserInfo, putRequest } from "../../api_functions/functions"
 
 // importing functions and components from react library
 import { useEffect, useState } from "react"
@@ -37,12 +37,13 @@ export const AccountBalancePage = () => {
 
             // setting state of 'userData' to new 'data'
             setCurrentUserData(data)
-            
+
         }, 1);
 
         // clearing the interval
         return () => { clearInterval(interval) }
     })
+
 
     // function that add balance to the account
     const addBalance = async ()=>{
