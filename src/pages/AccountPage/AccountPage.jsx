@@ -34,8 +34,21 @@ export const AccountPage = () => {
             <h1 className="display-5 fw-bold ">Welcome {userData.login} !</h1>
             <div className="col-6 bg-light mx-auto shadow-lg p-3">
                 <h3 className="display-6">Account Info</h3>
+
+                {/* user balance section */}
                 <p className="fs-5"> Balance : {parseInt(userData.balance)}</p>
-                <Link className="btn btn-outline-success">Top up</Link>
+                {/* link to '/account/accountBalance */}
+                <Link to="/account/accountBalance" className="btn btn-outline-success">Top up</Link>
+
+
+                {/* user info section */}
+                <p className="fs-5 mt-3 fw-bold"> Your user info : </p>
+                <p className="fs-5">Login : {userData.login} </p>
+                <p className="fs-5" type="password">Password : {userData.password} </p>
+                {/* link to '/account/userSettings' */}
+                <Link to="/account/userSettings" className="btn btn-outline-success">Change your data</Link>
+
+
             </div>
         </div>
     )
