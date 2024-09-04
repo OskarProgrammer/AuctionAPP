@@ -22,6 +22,7 @@ import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
 import { accountLoader, AccountPage } from './pages/AccountPage/AccountPage'
 import { accountBalanceLoader, AccountBalancePage } from './pages/AccountBalancePage/AccountBalancePage'
 import { auctionListLoader, AuctionListPage } from "./pages/AuctionListPage/AuctionListPage"
+import { userSettingsLoader, UserSettingsPage } from "./pages/UserSettingsPage/UserSettingsPage"
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
@@ -45,8 +46,11 @@ const router = createBrowserRouter(createRoutesFromElements(
           {/* route --> '/account/accountBalance with element <AccountBalancePage/>, loader 'accountBalanceLoader' */}
           <Route path="accountBalance" element={<AccountBalancePage/>} loader={accountBalanceLoader}/>
 
-          {/* route --> '/account/auctionList with element <AuctionListPage/> , loader 'auctionListLoader' */}
+          {/* route --> '/account/auctionList' with element <AuctionListPage/> , loader 'auctionListLoader' */}
           <Route path="auctionList" element={<AuctionListPage/>} loader={auctionListLoader}/>
+
+          {/* route --> '/account/userSettings' with element <UserSettingsPage/>, loader 'userSettingsLoader' */}
+          <Route path="userSettings" element={<UserSettingsPage/>} loader={userSettingsLoader}/>
 
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
