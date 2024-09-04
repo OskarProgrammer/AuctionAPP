@@ -28,12 +28,16 @@ export const AccountBalancePage = () => {
 
     // creating useEffect with interval
     useEffect(()=>{
+
         // declaring interval
         const interval = setInterval(async () => {
+
             // getting data about current user
             const data = await getCurrentUserInfo()
+
             // setting state of 'userData' to new 'data'
             setCurrentUserData(data)
+            
         }, 1);
 
         // clearing the interval
@@ -56,7 +60,7 @@ export const AccountBalancePage = () => {
             return
         }
 
-        // setting newBalnce of account
+        // setting newBalance of account
         currentUserData.balance = parseInt(newBalance) + parseInt(currentUserData.balance)
         
         // setting useState variable newBalance to default
@@ -82,8 +86,14 @@ export const AccountBalancePage = () => {
     // preview page of account balance
     return (
         <div className="container-fluid p-3 text-center">
+            
+            {/* header of the sub page */}
             <h1 className="display-4 fw-bold mb-5">Account balance page</h1>
+
+            {/* displaying balance */}
             <p className="fs-4">Current balance: {currentUserData.balance}</p>
+
+            {/* displaying form message, negative or positive depending on result of the action */}
             {message != "" ? <p className="fs-4">{message}</p> : ""}
             
             {/* button to open form */}
@@ -92,10 +102,16 @@ export const AccountBalancePage = () => {
             </button>
 
             {/* form of adding funds */}
-            {isExpanded ? <div className="container col-3 shadow-lg p-3 mt-3 d-flex flex-column gap-3">
-                <input className="p-2 text-center col-6 mx-auto" type="number" value={newBalance} onChange={(e)=>{setNewBalance(e.target.value)}}/>
-                <button className="btn btn-outline-success mx-auto col-6" onClick={()=>{ addBalance() } }>Add</button>
-            </div>
+            {isExpanded ? 
+                <div className="container col-3 shadow-lg p-3 mt-3 d-flex flex-column gap-3">
+
+                    {/* displaying input of balance that will be added to the balance */}
+                    <input className="p-2 text-center col-6 mx-auto" type="number" value={newBalance} onChange={(e)=>{setNewBalance(e.target.value)}}/>
+                    
+                    {/* button that add balance to the account */}
+                    <button className="btn btn-outline-success mx-auto col-6" onClick={ () =>{ addBalance() } }> Add </button>
+                
+                </div>
             : ""}
 
         </div>
