@@ -1,8 +1,10 @@
 // importing styles
-import { getRequest } from "../../api_functions/functions"
 import "./AccountLayout.css"
 
-//importing functions and components from react library
+// importing api functions
+import { getRequest } from "../../api_functions/functions"
+
+// importing functions and components from react library
 import { NavLink, Outlet, redirect } from "react-router-dom"
 
 
@@ -14,7 +16,7 @@ export const AccountLayout = () => {
         <div className="container-fluid d-flex gap-2">
 
             {/* left side of the layout */}
-            <div className="col-1 bg-light d-flex flex-column gap-3 p-3 shadow-lg border border-dark rounded sideBar">
+            <div className="col-lg-1 col-md-2 col-sm-2 col-3 bg-light d-flex flex-column gap-3 p-3 shadow-lg border border-dark rounded sideBar">
                 
                 {/* balance money button */}
                 <NavLink to="/account/accountBalance" className="btn btn-outline-dark icon-30" >
@@ -25,19 +27,19 @@ export const AccountLayout = () => {
                 {/* auctions list button */}
                 <NavLink to="/account/auctionList" className="btn btn-outline-dark icon-30" >
                     {/* list icon from bootstrap icons */}
-                    <i class="bi bi-card-list"/>
+                    <i className="bi bi-card-list"/>
                 </NavLink>
 
                 {/* user settings button */}
                 <NavLink to="/account/userSettings" className="btn btn-outline-dark icon-30" >
                     {/* person icon from bootstrap icons */}
-                    <i class="bi bi-person"/>
+                    <i className="bi bi-person"/>
                 </NavLink>
 
             </div>
 
             {/* right side of the layout */}
-            <div className="col-11">
+            <div className="col-lg-11 col-md-10 col-sm-10">
                 <Outlet />
             </div>
 
