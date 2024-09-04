@@ -102,8 +102,9 @@ export const UserSettingsPage = () => {
 
                         <input  type="text" 
                                 value={newLogin} 
-                                className="text-center col-10 mx-auto" 
-                                onChange={(e)=>{setNewLogin(e.target.value)}}/>
+                                className="text-center col-10 mx-auto p-2" 
+                                onChange={(e)=>{setNewLogin(e.target.value)}}
+                                placeholder="Your new login"/>
 
                         <button className="btn btn-outline-success col-5 mx-auto" onClick={()=>{modifyLogin()}} >Confirm</button>
 
@@ -128,8 +129,9 @@ export const UserSettingsPage = () => {
                     <div className="container d-flex flex-column col-6 gap-3">
                         <input  type="text" 
                                 value={newPassword} 
-                                className="text-center col-10 mx-auto" 
-                                onChange={(e)=>{setNewPassword(e.target.value)}}/>
+                                className="text-center col-10 mx-auto p-2" 
+                                onChange={(e)=>{setNewPassword(e.target.value)}}
+                                placeholder="Your new password"/>
 
                         <button className="btn btn-outline-success col-5 mx-auto">Confirm</button>
 
