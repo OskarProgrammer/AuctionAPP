@@ -24,6 +24,9 @@ import { accountBalanceLoader, AccountBalancePage } from './pages/AccountBalance
 import { auctionAction, auctionListLoader, AuctionListPage } from "./pages/AuctionListPage/AuctionListPage"
 import { userSettingsLoader, UserSettingsPage } from "./pages/UserSettingsPage/UserSettingsPage"
 
+//importing api functions
+import { getRequest, putRequest } from './api_functions/functions'
+
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<MainLayout/>} loader={mainLayoutLoader} >
@@ -61,15 +64,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 ))
 
 function App() {
-
-  // useEffect(()=>{
-  //   const interval = setInterval(() => {
-  //     setCounter(counter+=1)
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // })
-
+  
   return (
     <>
       {/* setting router provider with router */}
