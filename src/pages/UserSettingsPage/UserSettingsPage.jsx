@@ -35,8 +35,12 @@ export const UserSettingsPage = () => {
     // preview page
     return (
         <>
-            USER SETTINGS PAGE
-            {currentUser.login} {currentUser.password}
+            <div className="container-fluid p-3 text-center">
+            <h1 className="display-4 fw-bold mb-5">User data page</h1>
+            <p className="fs-4"> Login : {currentUser.login} </p>
+            <p className="fs-4"> Password : {currentUser.password} </p>
+            <p className="fs-4"> Account ID : {currentUser.id} </p>
+        </div>
         </>
     )
 }
