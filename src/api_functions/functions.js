@@ -56,7 +56,7 @@ export const getCurrentUserAuctions = async () => {
     let currentUserAuctions = []
 
     // looping through auctions
-    currentUserAuctions = auctions.filter(e => e.ownerId == currentUserData.id)
+    currentUserAuctions = auctions.filter(e => e.ownerId != currentUserData.id)
 
     // returning results
     return currentUserAuctions
