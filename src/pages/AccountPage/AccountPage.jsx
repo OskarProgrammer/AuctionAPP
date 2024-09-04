@@ -16,19 +16,6 @@ export const AccountPage = () => {
     // declaring and initlazing useState variable
     let [userData, setUserData] = useState(loaderData)
 
-    useEffect(()=>{
-        // declaring interval
-        const interval = setInterval(async () => {
-            // getting data about current user
-            const data = await getCurrentUserInfo()
-            // setting state of 'userData' to new 'data'
-            setUserData(data)
-        }, 1);
-
-        // clearing the interval
-        return () => { clearInterval(interval) }
-    })
-
     return (
         <div className="container-fluid text-center p-3 d-flex flex-column gap-4">
             <h1 className="display-5 fw-bold ">Welcome {userData.login} !</h1>
