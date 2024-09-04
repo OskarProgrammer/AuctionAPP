@@ -43,6 +43,24 @@ export const getCurrentUserInfo = async () => {
     return currentUserData
 }
 
+//function getCurrentUserAuctions is getting auctions of current user
+export const getCurrentUserAuctions = async () => {
+    
+    // getting currentUserData
+    const currentUserData = await getCurrentUserInfo()
+
+    // getting all auctions
+    const auctions = await getRequest("http://localhost:3000/auctions/")
+
+    // creating array of this user auctions
+    let currentUserAuctions = []
+
+    // looping through auctions
+    currentUserAuctions = auctions.filter(e => e.ownerId == currentUserData.id)
+
+    // returning results
+    return currentUserAuctions
+}
 
 // POST REQUESTS
 
