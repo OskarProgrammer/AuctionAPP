@@ -26,25 +26,6 @@ export const AccountBalancePage = () => {
     let [message, setMessage] = useState("")
 
 
-    // creating useEffect with interval
-    useEffect(()=>{
-
-        // declaring interval
-        const interval = setInterval(async () => {
-
-            // getting data about current user
-            const data = await getCurrentUserInfo()
-
-            // setting state of 'userData' to new 'data'
-            setCurrentUserData(data)
-
-        }, 1);
-
-        // clearing the interval
-        return () => { clearInterval(interval) }
-    })
-
-
     // function that add balance to the account
     const addBalance = async ()=>{
         // checking if value is positive
@@ -80,7 +61,10 @@ export const AccountBalancePage = () => {
 
         // setting form message
         setMessage("Funds have been added")
-        
+
+        // setting new value of currentUserData useState variable
+        currentUserData = await getCurrentUserInfo()
+        setCurrentUserData(currentUserData)
     }
 
 
