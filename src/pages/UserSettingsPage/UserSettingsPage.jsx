@@ -33,6 +33,9 @@ export const UserSettingsPage = () => {
     // declaring and initiliazing useState variable loginMessage
     let [loginMessage, setLoginMessage] = useState("")
 
+    // declaring and initiliazing useState variable passwordMessage
+    let [passwordMessage, setPasswordMessage] = useState("")
+
     // function that modifies login
     const modifyLogin = async () => {
         // checking if newLogin is not empty
@@ -72,6 +75,47 @@ export const UserSettingsPage = () => {
 
         // hiding form
         setIsLoginBeingModified(false)
+    }
+
+    // function that modifies password
+    const modifyPassword = async () => {
+        // checking if newPassword is not empty
+        if ( newPassword == "" ) {
+            // setting loginMessage
+            setPasswordMessage("New password cannot be empty")
+
+            // hiding form
+            setIsPasswordBeingModified(false)
+
+            return
+        }
+
+        // setting newPassword
+        currentUser.password = newPassword
+
+        // putting new data into db.json
+        try {
+            await putRequest(`http://localhost:3000/users/${currentUser.id}`,currentUser)
+        } catch {
+            // setting passMessage
+            setPasswordMessage("Something went wrong during updating data")
+            return
+        }
+
+        // setting newPassword useState variable to default
+        setNewPassword("")
+
+        // getting new current user data
+        currentUser = await getCurrentUserInfo()
+        
+        // setting useState variable
+        setCurrentUser(currentUser)
+
+        // setting passwordMessage
+        setPasswordMessage("Password has been changed successfully")
+
+        // hiding form
+        setIsPasswordBeingModified(false)
     }
 
     // preview page
@@ -119,7 +163,11 @@ export const UserSettingsPage = () => {
                 {/* displaying password */}
                 <p className="fs-4"> Password : {currentUser.password} </p>
 
-                <button className="btn btn-outline-primary col-lg-3 col-sm-4 col-5 mx-auto" onClick={()=>{ setIsPasswordBeingModified(!isPasswordBeingModified)}}>
+                {/* displaying form message, negative or positive depending on result of the action */}
+                {passwordMessage != "" ? <p className="fs-4">{passwordMessage}</p> : ""}
+
+
+                <button className="btn btn-outline-primary col-lg-3 col-sm-4 col-5 mx-auto" onClick={()=>{ setIsPasswordBeingModified(!isPasswordBeingModified); setPasswordMessage("") }}>
                     {isPasswordBeingModified ? "Hide form" : "Modify"}
                 </button>
 
@@ -127,13 +175,13 @@ export const UserSettingsPage = () => {
                 {isPasswordBeingModified ? 
 
                     <div className="container d-flex flex-column col-6 gap-3">
-                        <input  type="text" 
+                        <input  type="password" 
                                 value={newPassword} 
                                 className="text-center col-10 mx-auto p-2" 
                                 onChange={(e)=>{setNewPassword(e.target.value)}}
                                 placeholder="Your new password"/>
 
-                        <button className="btn btn-outline-success col-5 mx-auto">Confirm</button>
+                        <button className="btn btn-outline-success col-5 mx-auto" onClick={()=>{modifyPassword()}}>Confirm</button>
 
                     </div> 
                 :""}
