@@ -3,7 +3,7 @@
 import "./UserSettingsPage.css"
 
 // importing api functions
-import { getCurrentUserInfo } from "../../api_functions/functions"
+import { getCurrentUserInfo, putRequest } from "../../api_functions/functions"
 
 // importing functions and components from react library 
 import { useLoaderData } from "react-router-dom"
@@ -18,27 +18,125 @@ export const UserSettingsPage = () => {
     // declaring and initializing useState variable
     let [currentUser, setCurrentUser] = useState(loaderData)
 
-    // creating useEffect with setInterval 
-    useEffect(()=>{
-        const interval = setInterval( async ()=>{
-            const data = await getCurrentUserInfo()
+    // declaring and initiliainzg useState variable isPasswordBeingModified
+    let [isPasswordBeingModified, setIsPasswordBeingModified] = useState(false)
 
-            // setting useState
-            setCurrentUser(data)
-        }, 1)
+    // declaring and initializing useState variable newPassword
+    let [newPassword, setNewPassword] = useState("")
 
-        // clearing interval
-        return ()=>{ clearInterval(interval) }
-    }, [])
+    // declaring and initiliainzg useState variable isLoginBeingModified
+    let [isLoginBeingModified, setIsLoginBeingModified] = useState(false)
 
+    // declaring and initializing useState variable newLogin
+    let [newLogin, setNewLogin] = useState("")
+
+    // declaring and initiliazing useState variable loginMessage
+    let [loginMessage, setLoginMessage] = useState("")
+
+    // function that modifies login
+    const modifyLogin = async () => {
+        // checking if newLogin is not empty
+        if ( newLogin == "" ) {
+            // setting loginMessage
+            setLoginMessage("New login cannot be empty")
+
+            // hiding form
+            setIsLoginBeingModified(false)
+
+            return
+        }
+
+        // setting newLogin
+        currentUser.login = newLogin
+
+        // putting new data into db.json
+        try {
+            await putRequest(`http://localhost:3000/users/${currentUser.id}`,currentUser)
+        } catch {
+            // setting loginMessage
+            setLoginMessage("Something went wrong during updating data")
+            return
+        }
+
+        // setting newLogin useState variable to default
+        setNewLogin("")
+
+        // getting new current user data
+        currentUser = await getCurrentUserInfo()
+        
+        // setting useState variable
+        setCurrentUser(currentUser)
+
+        // setting loginMessage
+        setLoginMessage("Login has been changed successfully")
+
+        // hiding form
+        setIsLoginBeingModified(false)
+    }
 
     // preview page
     return (
         <>
-            <div className="container-fluid p-3 text-center">
+            <div className="container-fluid p-3 text-center d-flex flex-column gap-3">
+            
+            {/* header of the subpage */}
             <h1 className="display-4 fw-bold mb-5">User data page</h1>
-            <p className="fs-4"> Login : {currentUser.login} </p>
-            <p className="fs-4"> Password : {currentUser.password} </p>
+            
+            {/* login div */}
+            <div className="container d-flex flex-column gap-3 shadow-lg p-3 col-lg-6 col-md-10 col-sm-10 col-12 gap-3">
+
+                {/* displaying login */}
+                <p className="fs-4"> Login : {currentUser.login} </p>
+
+                {/* displaying form message, negative or positive depending on result of the action */}
+                {loginMessage != "" ? <p className="fs-4">{loginMessage}</p> : ""}
+
+                <button className="btn btn-outline-primary col-lg-3 col-sm-4 col-5 mx-auto" onClick={()=>{ setIsLoginBeingModified(!isLoginBeingModified); setLoginMessage("");}}>
+                    {isLoginBeingModified ? "Hide form" : "Modify"}
+                </button>
+
+                {/* new login form */}
+                {isLoginBeingModified ? 
+
+                    <div className="container d-flex flex-column col-6 gap-3">
+
+                        <input  type="text" 
+                                value={newLogin} 
+                                className="text-center col-10 mx-auto" 
+                                onChange={(e)=>{setNewLogin(e.target.value)}}/>
+
+                        <button className="btn btn-outline-success col-5 mx-auto" onClick={()=>{modifyLogin()}} >Confirm</button>
+
+                    </div> 
+                :""}
+            </div>
+
+
+            {/* password div */}
+            <div className="container d-flex flex-column gap-3 shadow-lg p-3 col-lg-6 col-md-10 col-sm-10 col-12 gap-3">
+
+                {/* displaying password */}
+                <p className="fs-4"> Password : {currentUser.password} </p>
+
+                <button className="btn btn-outline-primary col-lg-3 col-sm-4 col-5 mx-auto" onClick={()=>{ setIsPasswordBeingModified(!isPasswordBeingModified)}}>
+                    {isPasswordBeingModified ? "Hide form" : "Modify"}
+                </button>
+
+                {/* new password form */}
+                {isPasswordBeingModified ? 
+
+                    <div className="container d-flex flex-column col-6 gap-3">
+                        <input  type="text" 
+                                value={newPassword} 
+                                className="text-center col-10 mx-auto" 
+                                onChange={(e)=>{setNewPassword(e.target.value)}}/>
+
+                        <button className="btn btn-outline-success col-5 mx-auto">Confirm</button>
+
+                    </div> 
+                :""}
+            </div>
+
             <p className="fs-4"> Account ID : {currentUser.id} </p>
         </div>
         </>
