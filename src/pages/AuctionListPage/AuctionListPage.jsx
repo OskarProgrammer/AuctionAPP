@@ -2,7 +2,7 @@
 import "./AuctionListPage.css"
 
 // importing functions and components from react library 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form, redirect, useLoaderData } from "react-router-dom"
 
 // importing api functions
@@ -25,6 +25,18 @@ export const AuctionListPage = () => {
     // initializing useState variable isExpanded
     let [isExpanded, setIsExpanded] = useState(false)
 
+    // initializing useState variable currentDate
+    let [currentDate, setCurrentDate] = useState(new Date())
+
+    // useEffect to update currentDate
+    useEffect(()=>{
+        const interval = setInterval(()=>{
+            currentDate = new Date()
+            setCurrentDate(currentDate)
+        }, 1000)
+
+        return () => { clearInterval(interval) }
+    }, [])
 
     // preview page of auctions list
     return (
@@ -112,6 +124,28 @@ export const AuctionListPage = () => {
 
                 </Form> 
             : ""}
+
+            {/* list of your auctions */}
+            {currentUserAuctions.map((auction)=>(
+                    <div className="container-fluid col-lg-10 col-md-12 mx-auto shadow-lg rounded p-3 my-4">
+                        <h3 className="display-5 fw-bold">Title: {auction.title}</h3>
+                        <p className="fs-4">Description: {auction.desc}</p>
+
+                        <div className="container-fluid row fs-5 shadow-lg mx-auto mt-5">
+                            <h3 className="display-6 fw-bold p-3">Money informations</h3>
+                            <div className="col-lg-6 col-md-6 col-12 p-4">Min bid : {auction.minBid}</div>
+                            <div className="col-lg-6 col-md-6 col-12 p-4">Buyout cost : {auction.buyoutCost}</div>
+                            <p className="fs-5 fst-italic">Current bid : {auction.currentBid}</p>
+                        </div>
+
+                        <div className="container-fluid row fs-5 shadow-lg mx-auto mt-5">
+                            <h3 className="display-6 fw-bold p-3">Time informations</h3>
+                            <div className="col-lg-6 col-md-6 col-12 p-4">Creation date : {new Date(auction.creatingDate).toLocaleString()}</div>
+                            <div className="col-lg-6 col-md-6 col-12 p-4">Expire date : {new Date(auction.expireDate).toLocaleString()}</div>
+                            <p className="fs-5 fst-italic">Remaining time : {getFullDiff(currentDate, new Date(auction.expireDate))}</p>
+                        </div>
+                    </div>
+            ))}
 
         </div>
     )
@@ -202,5 +236,5 @@ export const auctionAction = async ( {request} ) => {
     }
 
     // redirecting to same route 
-    return redirect(".")
+    return redirect("/account/")
 }
