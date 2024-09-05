@@ -6,7 +6,7 @@ import { getFullDiff } from "../../date_functions/date_functions"
 
 // importing functions and components from react library
 import { useEffect, useState } from "react"
-import { getRequest, postRequest } from "../../api_functions/functions"
+import { deleteRequest, getRequest, postRequest } from "../../api_functions/functions"
 
 
 export const AuctionTab = (props) => {
@@ -26,12 +26,15 @@ export const AuctionTab = (props) => {
     useEffect(()=>{
         const timeout = setTimeout( async () => {
 
+            // getting info about owner of the auction 
             ownerInfo = await getRequest(`http://localhost:3000/users/${auction.ownerID}`)
+
+            // setting useState variable ownerInfo
             setOwnerInfo(ownerInfo)
 
         },1)
 
-        return () => { clearInterval(timeout) }
+        return () => { clearInterval(timeout) } // clearing interval in destructor method
     }, [])
 
     // useEffect to update currentDate
@@ -40,34 +43,53 @@ export const AuctionTab = (props) => {
 
             // creating new Date()
             currentDate = new Date()
+
+            // updating useState variable
             setCurrentDate(currentDate)
 
-            // setting timeDiff
-            timeDiff = getFullDiff( currentDate , new Date(auction.expireDate))
-            setTimeDiff(timeDiff)
-
+            
             // splitting timeDiff, checking if is 0
+
+            // setting hours variable with first element of the split array
             let hours = timeDiff.split(":")[0]
+
+            // setting minutes variable with second element of the split array
             let minutes = timeDiff.split(":")[1]
+
+            // setting seconds variable with third element of the split array
             let seconds = timeDiff.split(":")[2]
 
-            if ( hours == "0" && minutes == "0" && seconds == "0") {
-                auction.status == "finished"
 
+            // verifying if auction did not expire
+            if ( hours == "0" && minutes == "0" && seconds == "0") {
+
+                // deleting auction from auctions table
+                try {
+                    await deleteRequest(`http://localhost:3000/auctions/${auction.id}`)
+                } catch {
+                    throw new Error("Error during deleting data")
+                }
+
+                // posting auction to finishedAuctions table
                 try {
                     await postRequest("http://localhost:3000/finishedAuctions/", auction)
                 } catch {
                     throw new Error("Error during posting data")
                 }
 
-                // TODO ADD DELETE REQUEST OF AUCTION 
-            }
+                // stopping function
+                return
+            }   
 
-            
+            // setting timeDiff
+            timeDiff = getFullDiff( currentDate , new Date(auction.expireDate))
 
+            // setting useState variable timeDiff
+            setTimeDiff(timeDiff)
+        
         },1000)
 
-        return () => { clearInterval(interval) }
+        return () => { clearInterval(interval) } // clearing interaval
     }, [])
 
     return (
@@ -104,6 +126,8 @@ export const AuctionTab = (props) => {
 
                 {/* button to join the auction , link to auction*/}
                 <button className="btn btn-outline-success col-lg-5 col-md-5 col-sm-5 col-12 mx-auto">Join the auction!</button>
+
+                {/* TODO : MAKE LINK TAG TO AUCTION DETAILS SITE */}
 
         </div>
     )
