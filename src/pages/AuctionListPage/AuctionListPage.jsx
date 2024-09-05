@@ -232,7 +232,6 @@ export const auctionAction = async ( {request} ) => {
         winnerID: "",
         creatingDate: currentTime,
         expireDate: expireTime,
-        status : ""
     }
 
     // posting data into database
