@@ -8,6 +8,9 @@ import { Form, redirect, useLoaderData } from "react-router-dom"
 // importing api functions
 import { getCurrentUserAuctions, getCurrentUserInfo, postRequest } from "../../api_functions/functions"
 
+// importing date functions
+import { addHours, addMinutes, addSeconds, getExpireTime, getFullDiff, getHoursDiff, getMinutesDiff, getSecondsDiff } from "../../date_functions/date_functions"
+
 
 export const AuctionListPage = () => {
     // getting data from loader
@@ -76,10 +79,33 @@ export const AuctionListPage = () => {
                             name="minBid"/>
 
                     {/* time field */}
-                    <input  type="number" 
-                            className="p-3 text-center col-lg-6 col-md-6 col-sm-6 col-10 mx-auto shadow-lg border-0 rounded" 
-                            placeholder="Time of the auction in hours"
-                            name="time"/>
+                    {/* header */}
+                    <h3 className="display-5 pt-3">Expire info</h3>
+
+                    {/* inputs */}
+                    <input      type="datetime-local" 
+                                className="p-3 text-center col-lg-6 col-md-6 col-sm-6 col-10 mx-auto shadow-lg border-0 rounded" 
+                                placeholder="Seconds"
+                                name="expireDate"/>
+
+                    <div className="container d-flex gap-1">
+
+                        <input  type="number" 
+                                className="p-3 text-center col-lg-3 col-md-6 col-sm-6 col-10 mx-auto shadow-lg border-0 rounded" 
+                                placeholder="Hours"
+                                name="hours"/>
+
+                        <input  type="number" 
+                                className="p-3 text-center col-lg-3 col-md-6 col-sm-6 col-10 mx-auto shadow-lg border-0 rounded" 
+                                placeholder="Minutes"
+                                name="minutes"/>
+
+                        <input  type="number" 
+                                className="p-3 text-center col-lg-3 col-md-6 col-sm-6 col-10 mx-auto shadow-lg border-0 rounded" 
+                                placeholder="Seconds"
+                                name="seconds"/>
+
+                    </div>
 
                     {/* submit button */}
                     <button className="btn btn-outline-success col-lg-4 col-md-4 col-sm-4 col-6 mx-auto">Create</button>
@@ -103,6 +129,8 @@ export const auctionListLoader = async () => {
 }
 
 export const auctionAction = async ( {request} ) => {
+
+
     // getting form data
     const data = await request.formData()
 
@@ -118,11 +146,21 @@ export const auctionAction = async ( {request} ) => {
     // getting minBid
     const minBid = data.get("minBid")
 
-    // getting time
-    const time = data.get("time")
+    // getting time of auction
+    // getting date
+    const date = data.get("expireDate")
+
+    // getting hours
+    const hours = data.get("hours")
+
+    // getting minutes
+    const minutes = data.get("minutes")
+
+    // getting seconds
+    const seconds = data.get("seconds")
 
     // checking if any field is empty 
-    if ( title == "" || desc == "" || buyoutCost == "" || minBid == "" || time == "") {
+    if ( title == "" || desc == "" || buyoutCost == "" || minBid == "" || (hours == "" && minutes == "" && seconds == "" && date == "") ) {
         // returning error message
         return { error : "All fields must be provided" }
     }
@@ -130,6 +168,17 @@ export const auctionAction = async ( {request} ) => {
     // getting currentUserData 
     const currentUserData = await getCurrentUserInfo()
 
+    // getting currentDate 
+    let currentTime = new Date()
+
+    // creating date after given number of hours , minutes , seconds
+    let expireTime = ""
+    if (date == ""){
+        expireTime = getExpireTime("", hours, minutes, seconds)
+    } else {
+        expireTime = getExpireTime(date, hours, minutes, seconds)
+    }
+    
     // creating newAuction object
     const newAuction = {
         id: crypto.randomUUID(),
@@ -139,7 +188,8 @@ export const auctionAction = async ( {request} ) => {
         buyoutCost: buyoutCost,
         minBid: minBid,
         currentBid: 0,
-        time: time * 60 * 60
+        creatingDate: currentTime,
+        expireDate: expireTime
     }
 
     // posting data into database
