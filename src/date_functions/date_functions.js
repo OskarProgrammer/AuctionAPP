@@ -73,7 +73,7 @@ export const getExpireTime = (date, hours, minutes, seconds) =>{
     let additiveHours = hours * 60 * 60 * 1000
     // calculating additive minutes into miliseconds
     let additiveMinutes = minutes * 60 * 1000
-    // calculating additice seconds into miliseconds
+    // calculating additive seconds into miliseconds
     let additiveSeconds = seconds * 1000
 
     if ( date == "" ){
