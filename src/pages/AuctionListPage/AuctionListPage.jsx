@@ -9,7 +9,7 @@ import { Form, redirect, useLoaderData } from "react-router-dom"
 import { getCurrentUserAuctions, getCurrentUserInfo, postRequest } from "../../api_functions/functions"
 
 // importing date functions
-import { addHours, addMinutes, addSeconds, getExpireTime, getFullDiff, getHoursDiff, getMinutesDiff, getSecondsDiff } from "../../date_functions/date_functions"
+import { getExpireTime, getFullDiff } from "../../date_functions/date_functions"
 
 
 export const AuctionListPage = () => {
@@ -28,15 +28,22 @@ export const AuctionListPage = () => {
     // initializing useState variable currentDate
     let [currentDate, setCurrentDate] = useState(new Date())
 
-    // useEffect to update currentDate
+    // useEffect to update currentDate and currentUserAuctions
     useEffect(()=>{
-        const interval = setInterval(()=>{
+        const interval = setInterval(async()=>{
+            // getting info about current date to get current time
             currentDate = new Date()
-            setCurrentDate(currentDate)
+            setCurrentDate(currentDate) 
+
+            // getting info about current user auctions if anything chang it will be automatically updated on the page by
+            // useState variable
+            currentUserAuctions = await getCurrentUserAuctions()
+            setCurrentUserAuctions(currentUserAuctions)
         }, 1000)
 
         return () => { clearInterval(interval) }
     }, [])
+
 
     // preview page of auctions list
     return (
