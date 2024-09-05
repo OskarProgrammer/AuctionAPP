@@ -75,7 +75,12 @@ export const getAllAuctionsWithoutCurrentUser = async () => {
     let resultAuctions = []
 
     // looping through auctions
-    resultAuctions = auctions.filter((e) => (e.ownerID != currentUserData.id))
+    try {
+        resultAuctions = auctions.filter((e) => (e.ownerID != currentUserData.id))
+    } catch {
+        resultAuctions = auctions 
+    }
+    
 
     // returning results
     return resultAuctions
