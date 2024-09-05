@@ -229,8 +229,10 @@ export const auctionAction = async ( {request} ) => {
         buyoutCost: buyoutCost,
         minBid: minBid,
         currentBid: 0,
+        winnerID: "",
         creatingDate: currentTime,
-        expireDate: expireTime
+        expireDate: expireTime,
+        status : ""
     }
 
     // posting data into database
