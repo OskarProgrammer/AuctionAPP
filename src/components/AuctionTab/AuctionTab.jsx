@@ -6,18 +6,21 @@ import { getFullDiff } from "../../date_functions/date_functions"
 
 // importing functions and components from react library
 import { useEffect, useState } from "react"
-import { getRequest } from "../../api_functions/functions"
+import { getRequest, postRequest } from "../../api_functions/functions"
 
 
 export const AuctionTab = (props) => {
     // getting props data
-    const auction = props.auctionInfo
+    let auction = props.auctionInfo
 
     // creating useState variable ownerInfo
     let [ownerInfo, setOwnerInfo] = useState()
 
     // creating useState variable currentDate 
     let [currentDate, setCurrentDate] = useState(new Date())
+
+    // creating useState variable timeDiff
+    let [timeDiff, setTimeDiff] = useState(getFullDiff( currentDate , new Date(auction.expireDate)))
 
     // useEffect to get auction owner info
     useEffect(()=>{
@@ -33,11 +36,34 @@ export const AuctionTab = (props) => {
 
     // useEffect to update currentDate
     useEffect(()=>{
-        const interval = setInterval(()=>{
+        const interval = setInterval( async () => {
 
             // creating new Date()
             currentDate = new Date()
             setCurrentDate(currentDate)
+
+            // setting timeDiff
+            timeDiff = getFullDiff( currentDate , new Date(auction.expireDate))
+            setTimeDiff(timeDiff)
+
+            // splitting timeDiff, checking if is 0
+            let hours = timeDiff.split(":")[0]
+            let minutes = timeDiff.split(":")[1]
+            let seconds = timeDiff.split(":")[2]
+
+            if ( hours == "0" && minutes == "0" && seconds == "0") {
+                auction.status == "finished"
+
+                try {
+                    await postRequest("http://localhost:3000/finishedAuctions/", auction)
+                } catch {
+                    throw new Error("Error during posting data")
+                }
+
+                // TODO ADD DELETE REQUEST OF AUCTION 
+            }
+
+            
 
         },1000)
 
@@ -65,7 +91,7 @@ export const AuctionTab = (props) => {
                         <h5 className="display-6 fst-italic">Time info</h5>
                         <p>Date of creation : {new Date(auction.creatingDate).toLocaleString()}</p>
                         <p>Auction end date : {new Date(auction.expireDate).toLocaleString()}</p>
-                        <p>Time remaining: {getFullDiff( currentDate , new Date(auction.expireDate))} </p>
+                        <p>Time remaining: {timeDiff} </p>
                     </div>
 
                 </div>
