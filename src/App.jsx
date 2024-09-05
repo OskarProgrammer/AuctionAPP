@@ -14,7 +14,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import {MainLayout, mainLayoutLoader} from "./Layouts/MainLayout/MainLayout"
 
 //importing pages
-import {MainPage} from "./pages/MainPage/MainPage"
+import {loaderMainPage, MainPage} from "./pages/MainPage/MainPage"
 import {loginAction, LoginPage} from "./pages/LoginPage/LoginPage"
 import { registerAction, RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { AccountLayout, accountLayoutLoader } from './Layouts/AccountLayout/AccountLayout'
@@ -31,8 +31,8 @@ import { getRequest, putRequest } from './api_functions/functions'
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<MainLayout/>} loader={mainLayoutLoader} >
     
-      {/* route --> '/' with element <MainPage/> */}
-      <Route index element={<MainPage/>}/>
+      {/* route --> '/' with element <MainPage/> , loader 'loaderMainPage'*/}
+      <Route index element={<MainPage/>} loader={loaderMainPage}/>
 
       {/* route --> '/login' with element <LoginPage/> , action 'loginAction' */}
       <Route path="/login" element={<LoginPage/>} action={loginAction}/>
