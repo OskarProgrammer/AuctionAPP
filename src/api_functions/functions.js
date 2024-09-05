@@ -62,6 +62,25 @@ export const getCurrentUserAuctions = async () => {
     return currentUserAuctions
 }
 
+//function getAllAuctionsWithoutCurrentUser is getting all auctions without auctions of current user  
+export const getAllAuctionsWithoutCurrentUser = async () => {
+
+    // getting currentUserData 
+    const currentUserData = await getCurrentUserInfo()
+    
+    // getting all auctions
+    const auctions = await getRequest("http://localhost:3000/auctions/")
+
+    // creating array of auctions
+    let resultAuctions = []
+
+    // looping through auctions
+    resultAuctions = auctions.filter((e) => (e.ownerID != currentUserData.id))
+
+    // returning results
+    return resultAuctions
+}
+
 // POST REQUESTS
 
 export const postRequest = async (endpoint, payload) => {
