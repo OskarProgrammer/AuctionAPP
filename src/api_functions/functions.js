@@ -137,3 +137,30 @@ export const putRequest = async ( endpoint , payload ) => {
 
     }
 }
+
+
+// DELETE REQUESTS
+
+// TODO CREATE DELETEREQUEST FUNCTION
+
+// function that delete record from endpoint
+export const deleteRequest = async ( endpoint) => {
+    // creating request options object to implement the body, headers and method of the request
+    const requestOptions = {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+    }
+
+    //sending request
+    try {
+
+        // putting data to endpoint with given payload
+        await fetch ( endpoint , requestOptions)
+        
+    } catch {
+
+        //throwing error if occurs
+        throw new Error(`Error during deleting data from ${endpoint} `)
+
+    }
+}
