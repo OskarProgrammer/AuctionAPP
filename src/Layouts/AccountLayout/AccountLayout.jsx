@@ -30,6 +30,12 @@ export const AccountLayout = () => {
                     <i className="bi bi-card-list"/>
                 </NavLink>
 
+                {/* finished auctions button */}
+                <NavLink to="" className="btn btn-outline-dark icon-30" >
+                    {/* block icon from bootstrap icons */}
+                    <i className="bi bi-clock-history"/>
+                </NavLink>
+
                 {/* user settings button */}
                 <NavLink to="/account/userSettings" className="btn btn-outline-dark icon-30" >
                     {/* person icon from bootstrap icons */}
