@@ -25,7 +25,7 @@ export const MainPage = () => {
     let [auctions, setAuctions] = useState(loaderData)
 
     
-    // useEffect that get auctions every 3 seconds
+    // useEffect that get auctions every one second
     useEffect(()=>{
         const interval = setInterval( async () => {
             // getting data from endpoint
@@ -35,7 +35,7 @@ export const MainPage = () => {
             auctions = newAuctions
             setAuctions(auctions)
 
-        }, 3000)
+        }, 1000)
 
         return () => { clearInterval(interval) }
     }, [])
