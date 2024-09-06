@@ -5,9 +5,22 @@
       "login": "Oskar",
       "password": "root",
       "balance": 3154
+    },
+    {
+      "id": "2ec81375-66fd-44e6-9d4f-e4dfce899045",
+      "login": "Robert",
+      "password": "123",
+      "balance": 3140
+    },
+    {
+      "id": "d5018f0e-238f-47bc-86a6-f3925c569382",
+      "login": "Laura",
+      "password": "123",
+      "balance": 3000
     }
   ],
-  "auctions":[],
+  "auctions": [],
+  "finishedAuctions": [],
   "currentUser": {
     "id": "6d26594f-18c6-4aca-8c36-96ce47fab598",
     "isLogged": true
