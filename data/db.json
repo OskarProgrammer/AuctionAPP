@@ -10,7 +10,7 @@
       "id": "2ec81375-66fd-44e6-9d4f-e4dfce899045",
       "login": "Robert",
       "password": "123",
-      "balance": 3140
+      "balance": 0
     },
     {
       "id": "d5018f0e-238f-47bc-86a6-f3925c569382",
@@ -21,8 +21,9 @@
   ],
   "auctions": [],
   "finishedAuctions": [],
+  "orders": [],
   "currentUser": {
-    "id": "6d26594f-18c6-4aca-8c36-96ce47fab598",
+    "id": "2ec81375-66fd-44e6-9d4f-e4dfce899045",
     "isLogged": true
   }
 }
