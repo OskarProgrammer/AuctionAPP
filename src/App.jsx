@@ -26,6 +26,7 @@ import { userSettingsLoader, UserSettingsPage } from "./pages/UserSettingsPage/U
 
 //importing api functions
 import { getRequest, putRequest } from './api_functions/functions'
+import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAuctionsPage/FinishedAuctionsPage'
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
@@ -54,6 +55,9 @@ const router = createBrowserRouter(createRoutesFromElements(
 
           {/* route --> '/account/userSettings' with element <UserSettingsPage/>, loader 'userSettingsLoader' */}
           <Route path="userSettings" element={<UserSettingsPage/>} loader={userSettingsLoader}/>
+
+          {/* route --> '/account/finishedAuctions' with element <FinishedAuctionsPage/> , loader 'finishedAuctionsLoader'*/}
+          <Route path="finishedAuctions" element={<FinishedAuctionsPage/>} loader={finishedAuctionsLoader}/>
 
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
