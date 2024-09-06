@@ -33,7 +33,7 @@ export const BasketPage = () => {
         <div className="container-fluid text-center mt-3">
             
             {/* header of subpage */}
-            <h2 className="display-4">Your basket</h2>
+            <h2 className="display-4 fw-bold">Your basket</h2>
 
             {/* displaying items of the basket */}
             {basket.map((item)=>(
