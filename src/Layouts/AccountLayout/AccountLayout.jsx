@@ -62,8 +62,8 @@ export const accountLayoutLoader = async () => {
 
     // checking if there is logged user
     if (!currentUser.isLogged){
-        // redirecting to main route '/'
-        return redirect("/")   
+        // throwing error
+        throw new Error("You havent got access to that side")  
     }
 
     return null
