@@ -37,7 +37,7 @@ export const FinishedAuctionsPage = () => {
         <div className="container-fluid text-center p-3 d-flex flex-column gap-5">
 
             {/* header */}
-            <h1 className="display-4 fw-bold">Finished auctions list</h1>
+            <h1 className="display-4 fw-bold">Failed and not paid auctions list</h1>
 
             {/* listing finished auctions*/}
             { auctions.map((auction) => (
