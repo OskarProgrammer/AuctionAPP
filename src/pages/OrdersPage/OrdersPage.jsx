@@ -33,6 +33,7 @@ export const OrdersPage = () => {
             {/* header of the subpage */}
             <h2 className="display-4 fw-bold">Your orders</h2>
 
+            {/* displaying orders */}
             {orders.map((order)=> (
                 <OrderTab orderInfo={order} />
             ))}
