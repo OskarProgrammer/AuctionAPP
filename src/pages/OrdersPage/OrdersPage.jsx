@@ -8,6 +8,7 @@ import { getOrdersList } from "../../api_functions/functions"
 // importing functions and components from react library
 import { useLoaderData } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { OrderTab } from "../../components/OrderTab/OrderTab"
 
 export const OrdersPage = () => {
 
@@ -28,10 +29,14 @@ export const OrdersPage = () => {
     })
 
     return (
-        <div className="container-fluid text-center">
+        <div className="container-fluid text-center mt-3">
+            {/* header of the subpage */}
             <h2 className="display-4 fw-bold">Your orders</h2>
 
-            {/* TODO DISPLAYING ORDERS AND DELIVERY INFORMATIONS */}
+            {orders.map((order)=> (
+                <OrderTab orderInfo={order} />
+            ))}
+
         </div>
     )
 }
