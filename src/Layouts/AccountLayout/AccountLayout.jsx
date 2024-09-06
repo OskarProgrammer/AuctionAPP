@@ -36,12 +36,6 @@ export const AccountLayout = () => {
                     <i className="bi bi-clock-history"/>
                 </NavLink>
 
-                {/* basket button */}
-                <NavLink to="/account/basket" className="btn btn-outline-dark icon-30" >
-                    {/* basket icon from bootstrap icons */}
-                    <i class="bi bi-basket"/>
-                </NavLink>
-
                 {/* user settings button */}
                 <NavLink to="/account/userSettings" className="btn btn-outline-dark icon-30" >
                     {/* person icon from bootstrap icons */}
