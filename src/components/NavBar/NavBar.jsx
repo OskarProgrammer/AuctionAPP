@@ -79,7 +79,7 @@ export const NavBar = (props) => {
 
                 {/* button to the '/account/orders */}
                 {state ? 
-                    <NavLink to="" className="btn btn-outline-dark icon-30" >
+                    <NavLink to="/account/orders" className="btn btn-outline-dark icon-30" >
                         {/* box icon from bootstrap icons */}
                         <i class="bi bi-box-seam-fill fs-2"/>
                     </NavLink>
