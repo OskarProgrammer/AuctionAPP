@@ -23,7 +23,7 @@ export const OrdersPage = () => {
         const interval = setInterval( async () => {
            orders = await getOrdersList()
            setOrders(orders)
-        }, 500)
+        }, 100)
 
         return () => { clearInterval(interval) }
     })
