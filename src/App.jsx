@@ -24,7 +24,7 @@ import { accountBalanceLoader, AccountBalancePage } from './pages/AccountBalance
 import { auctionAction, auctionListLoader, AuctionListPage } from "./pages/AuctionListPage/AuctionListPage"
 import { userSettingsLoader, UserSettingsPage } from "./pages/UserSettingsPage/UserSettingsPage"
 import { AccessDeniedPage } from "./pages/AccessDeniedPage/AccessDeniedPage"
-import { BasketPage } from './pages/BasketPage/BasketPage'
+import { basketLoader, BasketPage } from './pages/BasketPage/BasketPage'
 import { auctionLoader, AuctionPage } from './pages/AuctionPage/AuctionPage'
 
 //importing api functions
@@ -64,8 +64,8 @@ const router = createBrowserRouter(createRoutesFromElements(
           {/* route --> '/account/finishedAuctions' with element <FinishedAuctionsPage/> , loader 'finishedAuctionsLoader'*/}
           <Route path="finishedAuctions" element={<FinishedAuctionsPage/>} loader={finishedAuctionsLoader}/>
 
-          {/* route --> '/account/basket' with element <BasketPage/>*/}
-          <Route path="basket" element={<BasketPage/>}/>
+          {/* route --> '/account/basket' with element <BasketPage/>, loader 'basketLoader' */}
+          <Route path="basket" element={<BasketPage/>} loader={basketLoader}/>
 
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
