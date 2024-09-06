@@ -47,13 +47,7 @@ export const NavBar = (props) => {
                     </Link> 
                 : ""}
 
-                {/* button to the '/account/basket */}
-                {state ? 
-                    <NavLink to="/account/basket" className="btn btn-outline-dark icon-30" >
-                        {/* basket icon from bootstrap icons */}
-                        <i class="bi bi-basket"/>
-                    </NavLink>
-                : ""}
+                
 
                 {/* button to the '/account/auctionList */}
                 {state ? 
@@ -81,6 +75,23 @@ export const NavBar = (props) => {
                             <p className="my-auto">Sign up</p>
                         </NavLink>
                     </> : ""}
+                
+
+                {/* button to the '/account/orders */}
+                {state ? 
+                    <NavLink to="" className="btn btn-outline-dark icon-30" >
+                        {/* box icon from bootstrap icons */}
+                        <i class="bi bi-box-seam-fill fs-2"/>
+                    </NavLink>
+                : ""}
+
+                {/* button to the '/account/basket */}
+                {state ? 
+                    <NavLink to="/account/basket" className="btn btn-outline-dark icon-30" >
+                        {/* basket icon from bootstrap icons */}
+                        <i class="bi bi-basket fs-2"/>
+                    </NavLink>
+                : ""}
 
                 {/*  rendering if user is logged in */}
                 {state ? 
