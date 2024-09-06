@@ -26,8 +26,9 @@ import { userSettingsLoader, UserSettingsPage } from "./pages/UserSettingsPage/U
 import { AccessDeniedPage } from "./pages/AccessDeniedPage/AccessDeniedPage"
 import { basketLoader, BasketPage } from './pages/BasketPage/BasketPage'
 import { auctionLoader, AuctionPage } from './pages/AuctionPage/AuctionPage'
-import { OrdersPage } from './pages/OrdersPage/OrdersPage'
+import { ordersLoader, OrdersPage } from './pages/OrdersPage/OrdersPage'
 import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAuctionsPage/FinishedAuctionsPage'
+import { orderAction } from './components/OrderTab/OrderTab'
 
 
 //creating routes
@@ -67,8 +68,8 @@ const router = createBrowserRouter(createRoutesFromElements(
           {/* route --> '/account/basket' with element <BasketPage/>, loader 'basketLoader' */}
           <Route path="basket" element={<BasketPage/>} loader={basketLoader}/>
 
-          {/* route --> '/account/orders' with element <OrdersPage/> */}
-          <Route path="orders" element={<OrdersPage/>}/>
+          {/* route --> '/account/orders' with element <OrdersPage/>, loader 'ordersLoader', action 'orderAction' */}
+          <Route path="orders" element={<OrdersPage/>} loader={ordersLoader} action={orderAction}/>
 
           {/* TODO ROUTE OF /ACCOUNT/DELIVERIES_TO_MAKE !!! */}
 
