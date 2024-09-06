@@ -7,6 +7,7 @@ import { getFullDiff } from "../../date_functions/date_functions"
 // importing functions and components from react library
 import { useEffect, useState } from "react"
 import { deleteRequest, getRequest, postRequest } from "../../api_functions/functions"
+import { NavLink } from "react-router-dom"
 
 
 export const AuctionTab = (props) => {
@@ -124,10 +125,10 @@ export const AuctionTab = (props) => {
                 {/* displaying auction id */}
                 <p>Auction id : {auction.id}</p>
 
-                {/* button to join the auction , link to auction*/}
-                <button className="btn btn-outline-success col-lg-5 col-md-5 col-sm-5 col-12 mx-auto">Join the auction!</button>
-
-                {/* TODO : MAKE LINK TAG TO AUCTION DETAILS SITE */}
+                {/* navlink to join the auction , link to '/auction/:id' */}
+                <NavLink to={`/auction/${auction.id}`} className="btn btn-outline-success col-lg-5 col-md-5 col-sm-5 col-12 mx-auto">
+                    Join the auction!
+                </NavLink>
 
         </div>
     )
