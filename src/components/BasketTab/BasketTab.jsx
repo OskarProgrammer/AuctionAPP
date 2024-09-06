@@ -24,7 +24,7 @@ export const BasketTab = (props) => {
         let currentUser = await getCurrentUserInfo()
 
         // getting owner of auction info
-        let ownerInfo = await getRequest(`http://localhost:3000/users/${ownerID}`)
+        let ownerInfo = await getRequest(`http://localhost:3000/users/${item.ownerID}`)
 
         // checking if user have got enough money
         if (currentUser.balance < item.currentBid) {
@@ -36,7 +36,7 @@ export const BasketTab = (props) => {
         currentUser.balance -= item.currentBid
 
         // adding price to owner balance
-        ownerInfo.balance += item.currentBid
+        ownerInfo.balance += parseInt(item.currentBid)
 
         // updating current user data
         try {
