@@ -12,12 +12,12 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 //importing layouts
 import {MainLayout, mainLayoutLoader} from "./Layouts/MainLayout/MainLayout"
+import { AccountLayout, accountLayoutLoader } from './Layouts/AccountLayout/AccountLayout'
 
 //importing pages
 import {loaderMainPage, MainPage} from "./pages/MainPage/MainPage"
 import {loginAction, LoginPage} from "./pages/LoginPage/LoginPage"
 import { registerAction, RegisterPage } from './pages/RegisterPage/RegisterPage'
-import { AccountLayout, accountLayoutLoader } from './Layouts/AccountLayout/AccountLayout'
 import { logOutLoader, LogOutPage } from './pages/LogOutPage/LogOutPage'
 import { accountLoader, AccountPage } from './pages/AccountPage/AccountPage'
 import { accountBalanceLoader, AccountBalancePage } from './pages/AccountBalancePage/AccountBalancePage'
@@ -26,9 +26,9 @@ import { userSettingsLoader, UserSettingsPage } from "./pages/UserSettingsPage/U
 import { AccessDeniedPage } from "./pages/AccessDeniedPage/AccessDeniedPage"
 import { basketLoader, BasketPage } from './pages/BasketPage/BasketPage'
 import { auctionLoader, AuctionPage } from './pages/AuctionPage/AuctionPage'
-
-//importing api functions
+import { OrdersPage } from './pages/OrdersPage/OrdersPage'
 import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAuctionsPage/FinishedAuctionsPage'
+
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
@@ -66,6 +66,9 @@ const router = createBrowserRouter(createRoutesFromElements(
 
           {/* route --> '/account/basket' with element <BasketPage/>, loader 'basketLoader' */}
           <Route path="basket" element={<BasketPage/>} loader={basketLoader}/>
+
+          {/* route --> '/account/orders' with element <OrdersPage/> */}
+          <Route path="orders" element={<OrdersPage/>}/>
 
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
