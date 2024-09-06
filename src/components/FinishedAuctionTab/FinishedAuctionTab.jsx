@@ -41,7 +41,7 @@ export const FinishedAuctionTab = (props) => {
             {/* status informations */}
             <h2 className="display-6 my-4 fw-bold">Status</h2>
             {
-                auction.winnerID != "" ? <p className="fs-3 col-lg-3 text-light bg-success mx-auto rounded p-2">SOLD</p> :
+                auction.winnerID != "" ? <p className="fs-3 col-lg-3 text-light bg-success mx-auto rounded p-2">SOLD for {auction.winnerID}</p> :
                 <p className="fs-3 col-lg-3 text-light bg-danger mx-auto rounded p-2">FAILED</p>
             }
 
