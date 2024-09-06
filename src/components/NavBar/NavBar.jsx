@@ -47,6 +47,14 @@ export const NavBar = (props) => {
                     </Link> 
                 : ""}
 
+                {/* button to the '/account/basket */}
+                {state ? 
+                    <NavLink to="/account/basket" className="btn btn-outline-dark icon-30" >
+                        {/* basket icon from bootstrap icons */}
+                        <i class="bi bi-basket"/>
+                    </NavLink>
+                : ""}
+
                 {/* button to the '/account/auctionList */}
                 {state ? 
                     <Link to="/account/auctionList" className="btn btn-outline-success">
