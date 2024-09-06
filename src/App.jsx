@@ -27,6 +27,7 @@ import { AccessDeniedPage } from "./pages/AccessDeniedPage/AccessDeniedPage"
 
 //importing api functions
 import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAuctionsPage/FinishedAuctionsPage'
+import { auctionLoader, AuctionPage } from './pages/AuctionPage/AuctionPage'
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
@@ -40,6 +41,9 @@ const router = createBrowserRouter(createRoutesFromElements(
 
       {/* route --> '/register' with element <RegisterPage/> , action 'registerAction' */}
       <Route path="/register" element={<RegisterPage/>} action={registerAction}/>
+
+      {/* route --> '/auction/:id' with element <AuctionPage/>, loader 'auctionLoader' */}
+      <Route path="/auction/:id" element={<AuctionPage/>} loader={auctionLoader}/>
 
       {/* route --> '/account' layout with element <AccountLayout/> , loader 'accountLayoutLoader' */}
       <Route path="/account/" element={<AccountLayout/>} loader={accountLayoutLoader} errorElement={<AccessDeniedPage/>}>
