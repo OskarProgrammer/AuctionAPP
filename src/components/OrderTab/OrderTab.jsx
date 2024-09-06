@@ -98,6 +98,7 @@ export const orderAction = async ( {request} ) => {
     orderInfo.city = city
     orderInfo.zipCode = zipCode
     orderInfo.street = street
+    orderInfo.status = "Preparing"
 
     // putting data to the database
     try {
