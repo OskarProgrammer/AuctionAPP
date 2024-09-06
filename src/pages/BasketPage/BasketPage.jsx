@@ -24,7 +24,7 @@ export const BasketPage = () => {
         const interval = setInterval(async () => {
             basket = await getBasketList()
             setBasket(basket)
-        }, 1000)
+        }, 500)
 
 
         return () => { clearInterval(interval) } 
