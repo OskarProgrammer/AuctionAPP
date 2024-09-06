@@ -107,7 +107,7 @@ export const AuctionListPage = () => {
                                 placeholder="Seconds"
                                 name="expireDate"/>
 
-                    <div className="container d-flex gap-1">
+                    <div className="container d-flex flex-lg-row flex-sm-column flex-column gap-2">
 
                         <input  type="number" 
                                 className="p-3 text-center col-lg-3 col-md-6 col-sm-6 col-10 mx-auto shadow-lg border-0 rounded" 
