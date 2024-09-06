@@ -1,6 +1,6 @@
 
 //importing functions and components from react library
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 // importing styles
@@ -41,10 +41,18 @@ export const NavBar = (props) => {
 
                 {/* button to the '/account/' route */}
                 {state ? 
-                    <NavLink to="/account/" className="btn btn-outline-dark">
+                    <Link to="/account/" className="btn btn-outline-dark">
                         {/* settings icon from bootstrap page */}
                         <i class="bi bi-gear fs-2" />
-                    </NavLink> 
+                    </Link> 
+                : ""}
+
+                {/* button to the '/account/auctionList */}
+                {state ? 
+                    <Link to="/account/auctionList" className="btn btn-outline-success">
+                        {/* plus icon from bootstrap page */}
+                        <i class="bi bi-plus-lg fs-2"/>
+                    </Link> 
                 : ""}
 
             </div>
