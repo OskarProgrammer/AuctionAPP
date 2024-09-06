@@ -105,6 +105,24 @@ export const getAllAuctionsWithoutCurrentUser = async () => {
     return resultAuctions
 }
 
+// function getBasketList is getting all auctions that were bought by current user
+export const getBasketList = async () => {
+    // getting current user data
+    const currentUserData = await getCurrentUserInfo()
+
+    // getting all finished auctions
+    const auctions = await getRequest("http://localhost:3000/finishedAuctions/")
+
+    // creating result array
+    let resultArray = []
+
+    // looping through auctions
+    resultArray = auctions.filter((e) => (e.winnerID == currentUserData.id))
+
+    //returning result
+    return resultArray
+}
+
 // POST REQUESTS
 
 export const postRequest = async (endpoint, payload) => {
