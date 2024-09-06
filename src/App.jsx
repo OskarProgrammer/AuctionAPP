@@ -23,9 +23,9 @@ import { accountLoader, AccountPage } from './pages/AccountPage/AccountPage'
 import { accountBalanceLoader, AccountBalancePage } from './pages/AccountBalancePage/AccountBalancePage'
 import { auctionAction, auctionListLoader, AuctionListPage } from "./pages/AuctionListPage/AuctionListPage"
 import { userSettingsLoader, UserSettingsPage } from "./pages/UserSettingsPage/UserSettingsPage"
+import { AccessDeniedPage } from "./pages/AccessDeniedPage/AccessDeniedPage"
 
 //importing api functions
-import { getRequest, putRequest } from './api_functions/functions'
 import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAuctionsPage/FinishedAuctionsPage'
 
 //creating routes
@@ -42,7 +42,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="/register" element={<RegisterPage/>} action={registerAction}/>
 
       {/* route --> '/account' layout with element <AccountLayout/> , loader 'accountLayoutLoader' */}
-      <Route path="/account/" element={<AccountLayout/>} loader={accountLayoutLoader}>
+      <Route path="/account/" element={<AccountLayout/>} loader={accountLayoutLoader} errorElement={<AccessDeniedPage/>}>
           
           {/* route --> '/account/' with element <AccountPage/> , loader 'accountLoader' */}
           <Route index element={<AccountPage/>} loader={accountLoader}/>
