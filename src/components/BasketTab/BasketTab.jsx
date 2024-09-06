@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 
 // importing api functions
-import { deleteRequest, getCurrentUserInfo, postRequest, putRequest } from "../../api_functions/functions"
+import { deleteRequest, getCurrentUserInfo, getRequest, postRequest, putRequest } from "../../api_functions/functions"
 
 export const BasketTab = (props) => {
     // getting item informations from props
@@ -23,6 +23,9 @@ export const BasketTab = (props) => {
         // getting current user info
         let currentUser = await getCurrentUserInfo()
 
+        // getting owner of auction info
+        let ownerInfo = await getRequest(`http://localhost:3000/users/${ownerID}`)
+
         // checking if user have got enough money
         if (currentUser.balance < item.currentBid) {
             setMessage("You haven't got enough money")
@@ -32,9 +35,13 @@ export const BasketTab = (props) => {
         // subtracting the value of an item
         currentUser.balance -= item.currentBid
 
+        // adding price to owner balance
+        ownerInfo.balance += item.currentBid
+
         // updating current user data
         try {
             await putRequest(`http://localhost:3000/users/${currentUser.id}`, currentUser)
+            await putRequest(`http://localhost:3000/users/${ownerInfo.id}`, ownerInfo)
         } catch {
             setMessage("Something went wrong during updating current user data")
             return
