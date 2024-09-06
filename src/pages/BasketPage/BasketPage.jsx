@@ -6,9 +6,10 @@ import "./BasketPage.css"
 import { getBasketList } from "../../api_functions/functions"
 
 // importing functions and componetnts from react library
-import { Link, useLoaderData } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { getFullDiff } from "../../date_functions/date_functions"
+
+// importing components
 import { BasketTab } from "../../components/BasketTab/BasketTab"
 
 export const BasketPage = () => {
