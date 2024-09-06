@@ -14,7 +14,7 @@ import { deleteRequest, getCurrentUserInfo, postRequest, putRequest } from "../.
 
 export const BasketTab = (props) => {
     // getting item informations from props
-    const item = props.itemInfo
+    let item = props.itemInfo
 
     // creating useState variables
     let [message, setMessage] = useState("")
@@ -48,6 +48,8 @@ export const BasketTab = (props) => {
             return
         }
 
+        item.status = "Preparing"
+        
         // posting data to orders
         try {
             await postRequest("http://localhost:3000/orders/", item)
