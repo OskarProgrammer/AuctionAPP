@@ -63,7 +63,7 @@ export const accountLayoutLoader = async () => {
     // checking if there is logged user
     if (!currentUser.isLogged){
         // throwing error
-        throw new Error("You havent got access to that side")  
+        throw new Error("You haven't got access to that side")  
     }
 
     return null
