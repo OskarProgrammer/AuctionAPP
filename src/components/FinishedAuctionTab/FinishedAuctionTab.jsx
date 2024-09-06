@@ -23,7 +23,6 @@ export const FinishedAuctionTab = (props) => {
                     <h5 className="display-6 fst-italic">Money info</h5>
                     <p>Buy out price: {auction.buyoutCost}</p>
                     <p>Min bidding price: {auction.minBid}</p>
-                    
                 </div>
 
                 {/* right side */}
@@ -44,6 +43,8 @@ export const FinishedAuctionTab = (props) => {
                 auction.winnerID != "" ? <p className="fs-3 col-lg-3 text-light bg-success mx-auto rounded p-2">SOLD for {auction.winnerID}</p> :
                 <p className="fs-3 col-lg-3 text-light bg-danger mx-auto rounded p-2">FAILED</p>
             }
+
+            {auction.winnerID == "" ? "" : <p className="fs-3">Final price: {auction.currentBid}</p>}
 
             {/* auctions id */}
             <p className="fs-5 p-3">Auction ID : {auction.id}</p>
