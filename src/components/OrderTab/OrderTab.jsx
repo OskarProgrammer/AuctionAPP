@@ -58,6 +58,7 @@ export const OrderTab = (props) => {
                         </Form> : ""}
 
             </div> : 
+            // delivery informations if provided
             <div className="container-fluid text-center d-flex flex-column gap-1 shadow col-4 my-3 p-3 bg-light text-dark rounded">
                 <p className="fs-4 fw-bold">Delivery informations</p>
                 <p className="fs-5">City : {order.city}</p>
