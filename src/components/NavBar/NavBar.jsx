@@ -43,7 +43,7 @@ export const NavBar = (props) => {
                 {state ? 
                     <Link to="/account/" className="btn btn-outline-dark">
                         {/* settings icon from bootstrap page */}
-                        <i class="bi bi-gear fs-2" />
+                        <i className="bi bi-gear fs-2" />
                     </Link> 
                 : ""}
 
@@ -53,7 +53,7 @@ export const NavBar = (props) => {
                 {state ? 
                     <Link to="/account/auctionList" className="btn btn-outline-success">
                         {/* plus icon from bootstrap page */}
-                        <i class="bi bi-plus-lg fs-2"/>
+                        <i className="bi bi-plus-lg fs-2"/>
                     </Link> 
                 : ""}
 
@@ -81,7 +81,7 @@ export const NavBar = (props) => {
                 {state ? 
                     <NavLink to="/account/orders" className="btn btn-outline-dark icon-30" >
                         {/* box icon from bootstrap icons */}
-                        <i class="bi bi-box-seam-fill fs-2"/>
+                        <i className="bi bi-box-seam-fill fs-2"/>
                     </NavLink>
                 : ""}
 
@@ -89,7 +89,7 @@ export const NavBar = (props) => {
                 {state ? 
                     <NavLink to="/account/basket" className="btn btn-outline-dark icon-30" >
                         {/* basket icon from bootstrap icons */}
-                        <i class="bi bi-basket fs-2"/>
+                        <i className="bi bi-basket fs-2"/>
                     </NavLink>
                 : ""}
 
