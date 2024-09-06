@@ -1,0 +1,20 @@
+.imageSection {
+    min-height: 20rem;
+}
+
+.textShadow {
+    transition: 0.1s ease-in-out;
+}
+
+.textShadow:hover {
+    font-weight: bold;
+    cursor: default !important;
+}
+
+.buttonHover {
+    transition: 0.2s ease;
+}
+
+.buttonHover:hover {
+    font-weight: bold !important;
+}
