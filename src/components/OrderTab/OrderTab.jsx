@@ -21,7 +21,7 @@ export const OrderTab = (props) => {
     let [isExpanded, setIsExpanded] = useState(false)
 
     return (
-        <div className="container-fluid shadow text-center p-3 my-5">
+        <div className="container-fluid shadow bg-dark text-light text-center p-3 my-5 rounded">
 
             {/* header of the order */}
             <h1 className="display-5">{order.title}</h1>
@@ -48,16 +48,22 @@ export const OrderTab = (props) => {
                                 className="col-lg-5 col-md-6 col-sm-10 col-12 d-flex flex-column gap-2 mx-auto"
                                 state={{id : order.id}}>
                             <input name='id' readOnly hidden value={order.id}/>
-                            <input type="text" name="city" placeholder="City" className="p-3 text-center" />
-                            <input type="text" name="zipCode" placeholder="Zip-code" className="p-3 text-center" />
-                            <input type="text" name="street" placeholder="Street" className="p-3 text-center" />
+                            <input type="text" name="city" placeholder="City" className="p-3 text-center rounded" />
+                            <input type="text" name="zipCode" placeholder="Zip-code" className="p-3 text-center rounded" />
+                            <input type="text" name="street" placeholder="Street" className="p-3 text-center rounded" />
 
                             {actionData && actionData.error && <p className="py-2 fs-3 bg-danger text-light rounded">{actionData.error}</p>}
 
                             <button className="btn btn-outline-success col-lg-4 mx-auto">Submit</button>
                         </Form> : ""}
 
-            </div> : ""}
+            </div> : 
+            <div className="container-fluid text-center d-flex flex-column gap-1 shadow col-4 my-3 p-3 bg-light text-dark rounded">
+                <p className="fs-4 fw-bold">Delivery informations</p>
+                <p className="fs-5">City : {order.city}</p>
+                <p className="fs-5">Zip code : {order.zipCode}</p>
+                <p className="fs-5">Street : {order.street}</p>
+            </div>}
 
         </div>
     )
