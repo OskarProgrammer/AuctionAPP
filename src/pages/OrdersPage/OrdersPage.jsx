@@ -30,6 +30,8 @@ export const OrdersPage = () => {
     return (
         <div className="container-fluid text-center">
             <h2 className="display-4 fw-bold">Your orders</h2>
+
+            {/* TODO DISPLAYING ORDERS AND DELIVERY INFORMATIONS */}
         </div>
     )
 }

@@ -70,6 +70,8 @@ const router = createBrowserRouter(createRoutesFromElements(
           {/* route --> '/account/orders' with element <OrdersPage/> */}
           <Route path="orders" element={<OrdersPage/>}/>
 
+          {/* TODO ROUTE OF /ACCOUNT/DELIVERIES_TO_MAKE !!! */}
+
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
 
