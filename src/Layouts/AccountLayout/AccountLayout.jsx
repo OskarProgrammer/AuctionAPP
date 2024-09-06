@@ -31,7 +31,7 @@ export const AccountLayout = () => {
                 </NavLink>
 
                 {/* finished auctions button */}
-                <NavLink to="" className="btn btn-outline-dark icon-30" >
+                <NavLink to="/account/finishedAuctions" className="btn btn-outline-dark icon-30" >
                     {/* block icon from bootstrap icons */}
                     <i className="bi bi-clock-history"/>
                 </NavLink>
