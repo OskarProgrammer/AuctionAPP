@@ -55,7 +55,7 @@ export const BasketTab = (props) => {
             return
         }
 
-        item.status = "Preparing"
+        item.status = "Waiting for delivery informations"
         
         // posting data to orders
         try {
