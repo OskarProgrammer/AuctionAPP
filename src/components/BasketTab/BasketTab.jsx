@@ -7,13 +7,61 @@ import { getFullDiff } from "../../date_functions/date_functions"
 
 // importing functions and components from react library
 import { Link } from "react-router-dom"
+import { useState } from "react"
+
+// importing api functions
+import { deleteRequest, getCurrentUserInfo, postRequest, putRequest } from "../../api_functions/functions"
 
 export const BasketTab = (props) => {
     // getting item informations from props
     const item = props.itemInfo
 
+    // creating useState variables
+    let [message, setMessage] = useState("")
+
+    const pay = async () => {
+        // getting current user info
+        let currentUser = await getCurrentUserInfo()
+
+        // checking if user have got enough money
+        if (currentUser.balance < item.currentBid) {
+            setMessage("You haven't got enough money")
+            return
+        }
+
+        // subtracting the value of an item
+        currentUser.balance -= item.currentBid
+
+        // updating current user data
+        try {
+            await putRequest(`http://localhost:3000/users/${currentUser.id}`, currentUser)
+        } catch {
+            setMessage("Something went wrong during updating current user data")
+            return
+        }
+
+        // deleting item from basket
+        try {
+            await deleteRequest(`http://localhost:3000/finishedAuctions/${item.id}`)
+        } catch {
+            setMessage("Something went wrong during removing item")
+            return
+        }
+
+        // posting data to orders
+        try {
+            await postRequest("http://localhost:3000/orders/", item)
+        } catch {
+            setMessage("Something went wrong during adding item to orders")
+            return
+        }
+
+        // stopping function
+        return
+    }
+
     return (
-        <div className="container-lg d-flex flex-column shadow p-3">
+        <div className="container-lg d-flex flex-column shadow p-3 mt-5">
              {/* title of auction */}
              <h2 className="display-5">{item.title}</h2>
                      
@@ -39,8 +87,8 @@ export const BasketTab = (props) => {
 
             </div>
 
-            {item.status == "paid" ? <p className="bg-success text-light p-3 fs-4 mx-auto col-6 my-3 rounded fw-bold">Paid!</p> 
-            : <p className="bg-danger text-light p-3 fs-4 mx-auto col-6 my-3 rounded fw-bold">Not paid!</p>}
+            {/* message */}
+            {message ? <p className="fs-4 mt-3 bg-danger text-light mx-auto col-3 rounded p-2">{message}</p> : ""}
 
             {/* buttons */}
             <div className="container-fluid d-flex flex-row gap-4 mt-3 justify-content-center">
@@ -48,7 +96,7 @@ export const BasketTab = (props) => {
                 <Link to={`/auction/${item.id}`} className="btn btn-lg btn-outline-primary">Check details</Link>
 
                 {/* button to pay the order */}
-                <button className="btn btn-lg btn-outline-success">Pay</button>
+                <button className="btn btn-lg btn-outline-success" onClick={()=>{ pay() }} >Pay</button>
             </div>
                      
         </div>
