@@ -62,6 +62,25 @@ export const getCurrentUserAuctions = async () => {
     return currentUserAuctions
 }
 
+//function getCurrentUserFinishedAuctions is getting finished auctions of current user
+export const getCurrentUserFinishedAuctions = async () => {
+    
+    // getting currentUserData
+    const currentUserData = await getCurrentUserInfo()
+
+    // getting all auctions
+    const auctions = await getRequest("http://localhost:3000/finishedAuctions/")
+
+    // creating array of this user auctions
+    let currentUserFinishedAuctions = []
+
+    // looping through auctions
+    currentUserFinishedAuctions = auctions.filter(e => (e.ownerID == currentUserData.id))
+
+    // returning results
+    return currentUserFinishedAuctions
+}
+
 //function getAllAuctionsWithoutCurrentUser is getting all auctions without auctions of current user  
 export const getAllAuctionsWithoutCurrentUser = async () => {
 
