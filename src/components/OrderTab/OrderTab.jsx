@@ -20,8 +20,22 @@ export const OrderTab = (props) => {
     // creating useState variable 
     let [isExpanded, setIsExpanded] = useState(false)
 
+    const received = async () => {
+        // changing status
+        order.status = "Received"
+        order.received = true
+
+        // updating data
+        try {
+            await putRequest(`http://localhost:3000/orders/${order.id}`, order)
+        } catch {
+            throw new Error("Error during updating order")
+        }
+
+    }
+
     return (
-        <div className="container-fluid shadow bg-dark text-light text-center p-3 my-5 rounded">
+        <div className="container-fluid shadow text-dark text-center p-3 my-5 rounded">
 
             {/* header of the order */}
             <h1 className="display-5">{order.title}</h1>
@@ -65,6 +79,9 @@ export const OrderTab = (props) => {
                 <p className="fs-5">Zip code : {order.zipCode}</p>
                 <p className="fs-5">Street : {order.street}</p>
             </div>}
+
+            {order.status == "Sent" ? <button className="btn btn-outline-success btn-lg" onClick={()=>{received()}} >Received!</button>
+            : ""}
 
         </div>
     )
