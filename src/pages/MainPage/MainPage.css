@@ -1,0 +1,12 @@
+
+.usersContainer {
+    scroll-snap-type: x mandatory !important;
+    overflow-x: auto;
+    scroll-padding: 40px;
+}
+
+.childContainer {
+    scroll-snap-align: none !important;
+    min-width: 20rem;
+    min-height: 20rem;
+}
