@@ -43,7 +43,7 @@ export const MainPage = () => {
             users = newUsers
             setUsers(users)
 
-        }, 1000)
+        }, 100)
 
         return () => { clearInterval(interval) }
     }, [])
