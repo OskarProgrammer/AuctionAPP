@@ -7,6 +7,7 @@ import { getUsersAuctions } from "../../api_functions/functions"
 
 // importing functions and components from react library
 import { useEffect, useState } from "react"
+import { NavLink } from "react-router-dom"
 
 
 export const ProfileTab = (props) => {
@@ -39,8 +40,8 @@ export const ProfileTab = (props) => {
             {/* amount of auctions */}
             <p className="fs-4">Auctions : {amountOfAuctions}</p>
 
-            {/* button to details of profile */}
-            <button className="btn btn-outline-primary">Check profile</button>
+            {/* NavLink to details of profile */}
+            <NavLink to={`/user/${user.id}`} className="btn btn-outline-primary">Check profile</NavLink>
 
         </div>
     )
