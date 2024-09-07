@@ -159,6 +159,21 @@ export const getDeliveriesList = async () => {
     return resultArray
 }
 
+// function getUsersAuctions gets given users aucitons 
+export const getUsersAuctions = async (userID) => {
+    // getting auctions
+    const auctions = await getRequest("http://localhost:3000/auctions/")
+
+    // creatintg result array
+    let resultArray = []
+
+    // looping throught auctions
+    resultArray = auctions.filter(e => e.ownerID == userID)
+
+    // returning result
+    return resultArray
+}
+
 // POST REQUESTS
 
 export const postRequest = async (endpoint, payload) => {
