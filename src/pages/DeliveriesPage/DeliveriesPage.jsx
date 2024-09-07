@@ -3,11 +3,14 @@
 import "./DeliveriesPage.css"
 
 // importing api functions
-import { getDeliveriesList } from "../../api_functions/functions"
+import { getDeliveriesList, getRequest } from "../../api_functions/functions"
 
 // importing functions and components from react library
 import { useLoaderData } from "react-router-dom"
 import { useState, useEffect } from "react"
+
+// importing components
+import { DeliveryTab } from "../../components/DeliveryTab/DeliveryTab"
 
 
 export const DeliveriesPage = () => {
@@ -34,6 +37,11 @@ export const DeliveriesPage = () => {
             
             {/* header of the subpage */}
             <h2 className="display-4 fw-bold">Deliveries</h2>
+
+            {/* displaying deliveries and managing them*/}
+            { deliveries.map( ( delivery ) => (
+                <DeliveryTab deliveryInfo={delivery}/>
+            ))}
 
         </div>
     )
