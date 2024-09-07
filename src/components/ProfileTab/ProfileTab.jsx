@@ -22,12 +22,12 @@ export const ProfileTab = (props) => {
     useEffect( () => {
         const interval = setInterval( async () => {
             // getting user auctions
-            const auctions = await getUsersAuctions()
+            const auctions = await getUsersAuctions(user.id)
             
             // setting amount of auctions
             amountOfAuctions = auctions.length
             setAmountOfAuctions(amountOfAuctions)
-        }, 200)
+        }, 100)
 
         return () => { clearInterval(interval) } 
     })
