@@ -141,6 +141,24 @@ export const getOrdersList = async () => {
     return resultArray
 }
 
+// function getDeliveriesList is getting all auctions that were ordered
+export const getDeliveriesList = async () => {
+    // getting current user data
+    const currentUserData = await getCurrentUserInfo()
+
+    // getting all paid auctions
+    const auctions = await getRequest("http://localhost:3000/orders/")
+
+    // creating result array
+    let resultArray = []
+
+    // looping through auctions
+    resultArray = auctions.filter((e) => (e.ownerID == currentUserData.id))
+
+    //returning result
+    return resultArray
+}
+
 // POST REQUESTS
 
 export const postRequest = async (endpoint, payload) => {
