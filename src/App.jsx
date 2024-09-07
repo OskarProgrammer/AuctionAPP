@@ -30,6 +30,7 @@ import { ordersLoader, OrdersPage } from './pages/OrdersPage/OrdersPage'
 import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAuctionsPage/FinishedAuctionsPage'
 import { orderAction } from './components/OrderTab/OrderTab'
 import { deliveriesLoader, DeliveriesPage } from './pages/DeliveriesPage/DeliveriesPage'
+import { profileLoader, ProfilePage } from './pages/ProfilePage/ProfilePage'
 
 
 //creating routes
@@ -47,6 +48,9 @@ const router = createBrowserRouter(createRoutesFromElements(
 
       {/* route --> '/auction/:id' with element <AuctionPage/>, loader 'auctionLoader' */}
       <Route path="/auction/:id" element={<AuctionPage/>} loader={auctionLoader}/>
+
+      {/* route --> '/user/:id' with element <ProfilePage/>, loader 'profileLoader' */}
+      <Route path="/user/:id" element={<ProfilePage/>} loader={profileLoader}/>
 
       {/* route --> '/account' layout with element <AccountLayout/> , loader 'accountLayoutLoader' */}
       <Route path="/account/" element={<AccountLayout/>} loader={accountLayoutLoader} errorElement={<AccessDeniedPage/>}>
