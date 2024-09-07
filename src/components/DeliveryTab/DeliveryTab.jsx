@@ -12,7 +12,7 @@ export const DeliveryTab = (props) => {
     let delivery = props.deliveryInfo
 
     // creating useState variable winnerInfo
-    let [winnerInfo, setWinnerInfo] = useState()
+    let [winnerInfo, setWinnerInfo] = useState({})
 
     // useEffect function that get info about winner of the auction
     useEffect(()=>{
@@ -76,10 +76,16 @@ export const DeliveryTab = (props) => {
                 </div>
             </div>
 
+            {/* date info container */}
+            <div className="container col-6 d-flex flex-column shadow p-3 my-3">
+                <p className="fs-4 text-dark">Auction created at : {new Date(delivery.creatingDate).toLocaleString() } </p>
+                <p className="fs-4 text-dark">Auction ended at : {new Date(delivery.expireDate).toLocaleString() } </p>
+            </div>
+
             <p className="fs-4 text-dark fw-bold">Status : {delivery.status}</p>
             
             {/* buttons container */}
-            {delivery.city == undefined ? "" 
+            {delivery.city == undefined || delivery.status == "Sent" || delivery.status == "Received" ? "" 
             : 
                 <div className="container-fluid d-flex flex-lg-row flex-column gap-2 justify-content-center">
                     <button className="btn btn-outline-success btn-lg fw-bold" onClick={()=>{ changeStatus("Sent") }} >Sent!</button>
