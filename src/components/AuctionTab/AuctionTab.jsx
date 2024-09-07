@@ -94,7 +94,7 @@ export const AuctionTab = (props) => {
     }, [])
 
     return (
-        <div className="container-lg border border-1 border-dark shadow-lg d-flex flex-column p-3 mx-auto my-4">
+        <div className="container-lg border border-1 border-dark text-center shadow-lg d-flex flex-column p-3 mx-auto my-4">
                 {/* title */}
                 <h3 className="display-5 fw-bold">{auction.title}</h3>
 
