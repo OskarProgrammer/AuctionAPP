@@ -99,7 +99,7 @@ export const AuctionTab = (props) => {
                 <h3 className="display-5 fw-bold">{auction.title}</h3>
 
                 {/* container */}
-                <div className="container-fluid d-flex my-4">
+                <div className="container-fluid d-flex my-4 gap-2">
                     
                     {/* money info */}
                     <div className="container d-flex bg-dark text-light flex-column col-lg-5 col-md-5 col-sm-5 p-2 gap-3 shadow-sm  rounded">
