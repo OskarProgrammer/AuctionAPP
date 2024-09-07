@@ -29,6 +29,7 @@ import { auctionLoader, AuctionPage } from './pages/AuctionPage/AuctionPage'
 import { ordersLoader, OrdersPage } from './pages/OrdersPage/OrdersPage'
 import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAuctionsPage/FinishedAuctionsPage'
 import { orderAction } from './components/OrderTab/OrderTab'
+import { deliveriesLoader, DeliveriesPage } from './pages/DeliveriesPage/DeliveriesPage'
 
 
 //creating routes
@@ -72,6 +73,8 @@ const router = createBrowserRouter(createRoutesFromElements(
           <Route path="orders" element={<OrdersPage/>} loader={ordersLoader} action={orderAction}/>
 
           {/* TODO ROUTE OF /ACCOUNT/DELIVERIES_TO_MAKE !!! */}
+          {/* route --> '/account/deliveries with element <DeliveriesPage/>, loader 'deliveriesLoader'*/}
+          <Route path="deliveries" element={<DeliveriesPage/>} loader={deliveriesLoader}/>
 
           {/* route --> '/account/logOut' with element <LogOutPage/>, loader 'logOutLoader' */}
           <Route path="logOut" element={<LogOutPage/>} loader={logOutLoader}/>
