@@ -205,7 +205,7 @@ export const AuctionPage = () => {
                 </div>
 
                 {/* button container */}
-                { !auctionInfo.isFinished &&  currentUserData.isLogged ? <div className="container-fluid d-flex flex-row justify-content-center gap-3 p-2 mt-4">
+                { !auctionInfo.isFinished &&  currentUserData.isLogged && currentUserData.id != auctionInfo.ownerID? <div className="container-fluid d-flex flex-row justify-content-center gap-3 p-2 mt-4">
                         <button className="btn btn-outline-success btn-lg col-5 buttonHover" onClick={()=>{ buy() }}>Buy out</button>
                         <button className="btn btn-outline-success btn-lg col-5 buttonHover" onClick={()=>{ bid() }}>Bid</button>
                     </div> : 
