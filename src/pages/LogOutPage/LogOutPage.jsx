@@ -20,9 +20,22 @@ export const logOutLoader = async () => {
         isLogged : false
     }
 
+    // creating new object of current chat
+    const newChatCurrent = {
+        id : ""
+    }
+
     // putting data into endpoint 'http://localhost:3000/currentUser/'
     try {
         await putRequest('http://localhost:3000/currentUser/', newCurrent)
+    } catch {
+        // throwing error if occurs
+        throw new Error(`Error during log out process`)
+    }
+
+    // putting data into endpoint 'http://localhost:3000/currentChat/'
+    try {
+        await putRequest('http://localhost:3000/currentChat/', newChatCurrent)
     } catch {
         // throwing error if occurs
         throw new Error(`Error during log out process`)
