@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import { getChatMessages, getCurrentUserInfo, getRequest } from "../../api_functions/functions"
 
 // importing components
-import { messageLoader, MessageTab } from "../MessageTab/MessageTab"
+import { MessageTab } from "../MessageTab/MessageTab"
 
 export const Chat = () => {
 
@@ -54,14 +54,17 @@ export const Chat = () => {
 
     return (
         <div className="container-fluid chatContainer p-3 shadow-lg border border-dark rounded">
-            { messages.map((message)=>(
-                <div className={`message container-fluid d-flex flex-row text-dark ${ message.ownerID == currentUser.id ?
-                    "justify-content-end" : "justify-content-start"}`}>
-                    
-                    <MessageTab messageInfo={message} currentUser={currentUser}/>
+            { messages.map( (message) => {
 
-                </div>
-            ))}
+                return (
+                    <div className={`message container-fluid d-flex flex-row text-dark ${ message.ownerID == currentUser.id ?
+                        "justify-content-end" : "justify-content-start"}`}>
+                
+                        <MessageTab messageInfo={message} currentUser={currentUser}/>
+    
+                    </div>
+                )
+            })}
         </div>
-    )
+        )
 }
