@@ -4,26 +4,60 @@
       "id": "6d26594f-18c6-4aca-8c36-96ce47fab598",
       "login": "Oskar",
       "password": "root",
-      "balance": 3154
+      "balance": 1255
     },
     {
-      "id": "2ec81375-66fd-44e6-9d4f-e4dfce899045",
+      "id": "19441566-69f4-426d-81b0-d99593270a4c",
       "login": "Robert",
       "password": "123",
       "balance": 0
-    },
-    {
-      "id": "d5018f0e-238f-47bc-86a6-f3925c569382",
-      "login": "Laura",
-      "password": "123",
-      "balance": 3000
     }
   ],
   "auctions": [],
   "finishedAuctions": [],
   "orders": [],
+  "chats": [
+    {
+      "id": "22",
+      "participants": [
+        "6d26594f-18c6-4aca-8c36-96ce47fab598"
+      ],
+      "name": "Some chat",
+      "lastMessage": "s"
+    },
+    {
+      "id": "23",
+      "participants": [
+        "6d26594f-18c6-4aca-8c36-96ce47fab598"
+      ],
+      "name": "Some chat v2",
+      "lastMessage": "s"
+    }
+  ],
+  "messages": [
+    {
+      "id": "1",
+      "chatID": "23",
+      "ownerID": "6d26594f-18c6-4aca-8c36-96ce47fab598",
+      "message": "hej"
+    },
+    {
+      "id": "2",
+      "chatID": "23",
+      "ownerID": "ss",
+      "message": "hej"
+    }
+  ],
   "currentUser": {
-    "id": "2ec81375-66fd-44e6-9d4f-e4dfce899045",
+    "id": "6d26594f-18c6-4aca-8c36-96ce47fab598",
     "isLogged": true
+  },
+  "currentChat": {
+    "id": "23",
+    "participants": [
+      "6d26594f-18c6-4aca-8c36-96ce47fab598"
+    ],
+    "name": "Some chat v2",
+    "lastMessage": "s"
   }
 }
