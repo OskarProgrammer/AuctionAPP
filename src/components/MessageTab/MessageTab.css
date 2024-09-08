@@ -1,6 +1,9 @@
 
 .messageSize {
     min-width: 10rem;
+    max-width: 30rem;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .messageSize:hover {

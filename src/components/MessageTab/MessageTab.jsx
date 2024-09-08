@@ -33,8 +33,8 @@ export const MessageTab = (props) => {
 
             {/* message container */}
             { message.ownerID == currentUser.id ? 
-            <div className="d-flex flex-column my-2 ">
-                <span className="fs-3 bg-primary text-light p-3 rounded text-center messageSize" onClick={()=>{setIsExpanded(!isExpanded)}} >{message.message}</span> 
+            <div className="d-flex flex-column my-2">
+                <span className="fs-3 bg-primary text-light p-3 rounded text-center messageSize text-wrap" onClick={()=>{setIsExpanded(!isExpanded)}} >{message.message}</span> 
                 {isExpanded ? <span className="text-center">{ diff() }</span> : ""}
             </div>
             : 
