@@ -26,9 +26,11 @@ export const Chat = (props) => {
     // creasting useState variable messages
     let [messages, setMessages] = useState([])
 
+
     // useEffect function to fetch messages
     useEffect(()=>{
         const interval = setInterval( async () => {
+
             // getting currentChat
             chat = await getRequest(`http://localhost:3000/currentChat/`)
 
@@ -56,7 +58,7 @@ export const Chat = (props) => {
     return (
         <div className="container-fluid chatContainer d-flex flex-column-reverse p-3 shadow-lg border border-dark rounded">
 
-            { messages.map( (message) => {
+            {messages.map( (message) => {
 
                 return (
                     <div className={`message container-fluid d-flex text-dark ${ message.ownerID == currentUser.id ?
@@ -68,7 +70,7 @@ export const Chat = (props) => {
                 )
             })}
 
-            <h1 className="display-3 p-3 text-center">
+            <h3 className="display-3 p-3 text-center">
                 Chat with {chat.participants.length-1}{chat.participants.length-1 == 1 ? " person" : " people"}<br/>
             
                 <p className="people text-muted">
@@ -83,7 +85,7 @@ export const Chat = (props) => {
                     })}
                 </p>
 
-            </h1>
+            </h3>
             
         </div>
         )
