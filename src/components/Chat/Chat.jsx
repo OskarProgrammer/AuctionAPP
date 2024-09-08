@@ -10,12 +10,13 @@ import { getChatMessages, getCurrentUserInfo, getRequest } from "../../api_funct
 
 // importing components
 import { MessageTab } from "../MessageTab/MessageTab"
+import { PersonTab } from "../PersonTab/PersonTab"
 
-export const Chat = () => {
+export const Chat = (props) => {
 
 
     // creating useState variable of chat
-    let [chat, setChat] = useState({})
+    let [chat, setChat] = useState(props.chatInfo)
 
     // creating useState variable currentUserInfo
     let [currentUser, setCurrentUser] = useState({
@@ -54,6 +55,7 @@ export const Chat = () => {
 
     return (
         <div className="container-fluid chatContainer d-flex flex-column-reverse p-3 shadow-lg border border-dark rounded">
+
             { messages.map( (message) => {
 
                 return (
@@ -65,6 +67,24 @@ export const Chat = () => {
                     </div>
                 )
             })}
+
+            <h1 className="display-3 p-3 text-center">
+                Chat with {chat.participants.length-1}{chat.participants.length-1 == 1 ? " person" : " people"}<br/>
+            
+                <p className="people">
+                    {chat.participants.map((person) => {
+
+                        // returning if person is not the currentUser to avoid unlogical list, because you
+                        // are not chatting with yourself
+                        if (person != currentUser.id) {
+                            return <PersonTab personID={person}/>
+                        }
+
+                    })}
+                </p>
+
+            </h1>
+            
         </div>
         )
 }

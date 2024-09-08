@@ -7,3 +7,7 @@
 .message {
     scroll-snap-align: revert !important;
 }
+
+.people {
+    font-size: 40px;
+}
