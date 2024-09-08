@@ -98,5 +98,5 @@ export const loginAction = async ( {request}  ) => {
     }
 
     //redirecting to '/' if everything was ok
-    return redirect("/account/")
+    return redirect("/")
 }   
