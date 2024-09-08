@@ -31,6 +31,7 @@ import { finishedAuctionsLoader, FinishedAuctionsPage } from './pages/FinishedAu
 import { orderAction } from './components/OrderTab/OrderTab'
 import { deliveriesLoader, DeliveriesPage } from './pages/DeliveriesPage/DeliveriesPage'
 import { profileLoader, ProfilePage } from './pages/ProfilePage/ProfilePage'
+import { ChatsPage } from './pages/ChatsPage/ChatsPage'
 
 
 //creating routes
@@ -51,6 +52,9 @@ const router = createBrowserRouter(createRoutesFromElements(
 
       {/* route --> '/user/:id' with element <ProfilePage/>, loader 'profileLoader' */}
       <Route path="/user/:id" element={<ProfilePage/>} loader={profileLoader}/>
+
+      {/* route --> '/chats with element <ChatsPage/> */}
+      <Route path="chats" element={<ChatsPage/>}/>
 
       {/* route --> '/account' layout with element <AccountLayout/> , loader 'accountLayoutLoader' */}
       <Route path="/account/" element={<AccountLayout/>} loader={accountLayoutLoader} errorElement={<AccessDeniedPage/>}>
@@ -76,7 +80,6 @@ const router = createBrowserRouter(createRoutesFromElements(
           {/* route --> '/account/orders' with element <OrdersPage/>, loader 'ordersLoader', action 'orderAction' */}
           <Route path="orders" element={<OrdersPage/>} loader={ordersLoader} action={orderAction}/>
 
-          {/* TODO ROUTE OF /ACCOUNT/DELIVERIES_TO_MAKE !!! */}
           {/* route --> '/account/deliveries with element <DeliveriesPage/>, loader 'deliveriesLoader'*/}
           <Route path="deliveries" element={<DeliveriesPage/>} loader={deliveriesLoader}/>
 
