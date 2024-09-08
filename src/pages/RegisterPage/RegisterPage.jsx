@@ -7,7 +7,7 @@ import "./RegisterPage.css"
 
 
 //importing API
-import { getRequest, postRequest } from "../../api_functions/functions"
+import { getRequest, postRequest, putRequest } from "../../api_functions/functions"
 
 
 // login page in which user can log into the system
@@ -119,6 +119,13 @@ export const registerAction = async ( {request} ) => {
     } catch {
         // returning error message 'Something went wrong during creating user'
         return { error : "Something went wrong during creating user"}
+    }
+
+    // logging into account
+    try {
+        await putRequest("http://localhost:3000/currentUser/", { id : newUser.id, isLogged : true})
+    } catch {
+        return { error : "Something went wrong during logging process"}
     }
 
     // redirecting to the main page if everything is successfully done
