@@ -36,7 +36,7 @@ import { chatsLoader, ChatsPage } from './pages/ChatsPage/ChatsPage'
 
 //creating routes
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<MainLayout/>} loader={mainLayoutLoader} >
+  <Route path="/" element={<MainLayout/>} loader={mainLayoutLoader} errorElement={<AccessDeniedPage/>}>
     
       {/* route --> '/' with element <MainPage/> , loader 'loaderMainPage'*/}
       <Route index element={<MainPage/>} loader={loaderMainPage}/>
