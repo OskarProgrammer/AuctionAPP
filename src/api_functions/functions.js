@@ -189,6 +189,21 @@ export const getUsersChats = async (userID) => {
     return resultArray
 }
 
+// function getChatMessages gets messages from the chat
+export const getChatMessages = async (chatID) => {
+    // getting all messages
+    const messages = await getRequest(`http://localhost:3000/messages/`)
+
+    // creating resultArray
+    let resultArray = []
+
+    // looping through messages
+    resultArray = messages.filter(e => e.chatID == chatID)
+
+    // returning resukltArray
+    return resultArray
+}
+
 // POST REQUESTS
 
 export const postRequest = async (endpoint, payload) => {
