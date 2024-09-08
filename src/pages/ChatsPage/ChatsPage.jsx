@@ -119,7 +119,7 @@ export const ChatsPage = () => {
                         
                         {/* title of conversation */}
                         <p className="text-center fw-bold">{chat.name}</p>
-                        <p className={`text-center fst-italic`}>{chat.lastMessage}</p>
+                        <p className="text-center fst-italic">{chat.lastMessage}</p>
                     </div>
                 ))}
             
