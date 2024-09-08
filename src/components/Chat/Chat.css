@@ -1,0 +1,9 @@
+.chatContainer {
+    height: 31rem;
+    scroll-snap-type: x mandatory !important;
+    overflow-y: auto;
+}
+
+.message {
+    scroll-snap-align: none !important;
+}
