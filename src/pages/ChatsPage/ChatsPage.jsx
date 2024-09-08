@@ -38,7 +38,13 @@ export const ChatsPage = () => {
             // setting chats
             setChats(chats)
 
-        }, 500)
+            // getting currentChat
+            currentChat = await getRequest(`http://localhost:3000/currentChat/`)
+
+            // setting currentChat
+            setCurrentChat(currentChat)
+
+        }, 200)
 
         return () => ( clearInterval(interval) )
     })
@@ -67,6 +73,7 @@ export const ChatsPage = () => {
             "id": crypto.randomUUID,
             "chatID": currentChat.id,
             "ownerID": currentUser.id,
+            "ownerName": currentUser.login,
             "message": newMessage
         }
 
@@ -104,8 +111,13 @@ export const ChatsPage = () => {
                 
                 {/* displaying chats of user */}
                 {chats.map((chat)=>(
-                    <div className={`container-fluid d-flex flex-column shadow p-2 ${currentChat.id == chat.id ? "text-light bg-primary" : "text-primary bg-outline-primary"} 
-                                    rounded border border-1 border-primary chatHover`} onClick={()=>{ setChat(chat) }}>
+                    <div    className={`container-fluid d-flex flex-column shadow p-2 
+                                    ${currentChat.id == chat.id ? "text-light bg-primary" 
+                                        : "text-primary bg-outline-primary"} 
+                                    rounded border border-1 border-primary chatHover`} 
+                            onClick={()=>{ setChat(chat) }}>
+                        
+                        {/* title of conversation */}
                         <p className="text-center fw-bold">{chat.name}</p>
                         <p className="text-center fst-italic">{chat.lastMessage}</p>
                     </div>
@@ -121,6 +133,7 @@ export const ChatsPage = () => {
                 : ""}
 
                 {currentChat.id != "" ? 
+
                     <div className="container-fluid col-12 d-flex flex-column gap-2">
                         <h2 className="display-5 text-center">{currentChat.name}</h2>
 
@@ -129,10 +142,20 @@ export const ChatsPage = () => {
 
                         {/* new message input */}
                         <div className="container-fluid d-flex flex-row gap-2">
-                            <input  type="text" value={newMessage} onChange={(e)=>{setNewMessage(e.target.value)}}
+
+                            {/* input message */}
+                            <input  type="text" 
+                                    value={newMessage} 
+                                    onChange={(e)=>{setNewMessage(e.target.value)}}
                                     className="text p-2 rounded border border-1 border-dark 
-                                                            fs-4 col-lg-11 col-md-10 col-9" />
-                            <button className="btn btn-outline-success col-lg-1 col-md-2 col-3" onClick={()=>{sendMessage()}}><i className="bi bi-send fs-2"/></button>
+                                                fs-4 col-lg-11 col-md-10 col-9" />
+
+                            {/* button to send message */}
+                            <button className="btn btn-outline-success col-lg-1 col-md-2 col-3" 
+                                    onClick={()=>{sendMessage()}}>
+                                        <i className="bi bi-send fs-2"/>
+                            </button>
+
                         </div>
                         
                     </div>
