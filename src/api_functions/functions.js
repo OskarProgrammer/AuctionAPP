@@ -174,6 +174,21 @@ export const getUsersAuctions = async (userID) => {
     return resultArray
 }
 
+// function getUsersChats gets given users aucitons 
+export const getUsersChats = async (userID) => {
+    // getting chats
+    const chats = await getRequest("http://localhost:3000/chats/")
+
+    // creatintg result array
+    let resultArray = []
+
+    // looping throught chats
+    resultArray = chats.filter(e => e.participants.includes(userID))
+
+    // returning result
+    return resultArray
+}
+
 // POST REQUESTS
 
 export const postRequest = async (endpoint, payload) => {
