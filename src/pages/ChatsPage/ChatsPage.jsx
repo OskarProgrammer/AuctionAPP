@@ -74,7 +74,8 @@ export const ChatsPage = () => {
             "chatID": currentChat.id,
             "ownerID": currentUser.id,
             "ownerName": currentUser.login,
-            "message": newMessage
+            "message": newMessage,
+            "createdAt" : new Date(),
         }
 
         try {
