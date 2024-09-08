@@ -63,6 +63,7 @@ export const NavBar = (props) => {
             <div className="col-6 d-flex justify-content-end gap-3 ">
 
                 {/* rendering if user is not logged in */}
+                
                 {!state ? 
                     <>
                         {/* button to the '/login' route  */}
@@ -76,6 +77,17 @@ export const NavBar = (props) => {
                         </NavLink>
                     </> : ""}
                 
+                {/*  rendering if user is logged in */}
+
+
+                {/* button to the '/chats */}
+                {state ? 
+                    <NavLink to="/chats" className="btn btn-outline-dark icon-30" >
+                        {/* chat icon from bootstrap icons */}
+                        <i className="bi bi-chat-dots fs-2" />
+                    </NavLink>
+                : ""}
+
 
                 {/* button to the '/account/orders */}
                 {state ? 
@@ -93,14 +105,12 @@ export const NavBar = (props) => {
                     </NavLink>
                 : ""}
 
-                {/*  rendering if user is logged in */}
+                {/* button to the '/account/logOut' route  */}
                 {state ? 
-                    <>
-                        {/* button to the '/account/logOut' route  */}
                         <NavLink to="/account/logOut" className="btn btn-outline-danger fw-bold d-flex">
                             <p className="my-auto">Log out</p>
                         </NavLink>
-                    </> : ""}
+                    : ""}
                 
             </div>
 
