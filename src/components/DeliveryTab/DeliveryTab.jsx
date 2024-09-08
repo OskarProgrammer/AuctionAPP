@@ -1,10 +1,13 @@
 
 // importing styles
-import { getRequest, putRequest } from "../../api_functions/functions"
 import "./DeliveryTab.css"
+
+// importing api functions
+import { getCurrentUserInfo, getRequest, postRequest, putRequest } from "../../api_functions/functions"
 
 // importing functions and components from react library
 import { useEffect, useState } from "react"
+import { redirect } from "react-router-dom"
 
 export const DeliveryTab = (props) => {
 
@@ -40,6 +43,36 @@ export const DeliveryTab = (props) => {
             throw new Error("Error during updating data")
         }
     }
+
+    const createChat = async () => {
+        // getting current user info
+        const currentUser = await getCurrentUserInfo()
+
+        // creating new chat object
+        let newChat = {
+            "id": crypto.randomUUID(),
+            "participants": [ delivery.winnerID, delivery.ownerID],
+            "name": `${currentUser.login} | ${winnerInfo.login}`,
+            "lastMessage": ""
+        }
+
+        // posting new chat
+        try {
+            await postRequest(`http://localhost:3000/chats/`, newChat)
+        } catch {
+            throw new Error("Error during creating new chat")
+        }
+
+        // posting new current
+        try {
+            await putRequest(`http://localhost:3000/currentChat/`, newChat)
+        } catch {
+            throw new Error("Error during changing current chat")
+        }
+
+        return redirect("/chats")
+    }
+
 
     return (
         <div className="container-fluid shadow-lg d-flex flex-column text-light text-center p-3 my-5 rounded col-lg-8 col-12">
@@ -89,6 +122,7 @@ export const DeliveryTab = (props) => {
             : 
                 <div className="container-fluid d-flex flex-lg-row flex-column gap-2 justify-content-center">
                     <button className="btn btn-outline-success btn-lg fw-bold" onClick={()=>{ changeStatus("Sent") }} >Sent!</button>
+                    <button className="btn btn-outline-primary btn-lg fw-bold" onClick={()=>{ createChat() }}> Contact </button>
                 </div>
             }
 
