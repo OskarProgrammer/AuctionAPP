@@ -1,1 +1,8 @@
 
+.messageSize {
+    min-width: 10rem;
+}
+
+.messageSize:hover {
+    cursor: default;
+}
