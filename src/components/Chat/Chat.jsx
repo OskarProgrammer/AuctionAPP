@@ -71,7 +71,7 @@ export const Chat = (props) => {
             <h1 className="display-3 p-3 text-center">
                 Chat with {chat.participants.length-1}{chat.participants.length-1 == 1 ? " person" : " people"}<br/>
             
-                <p className="people">
+                <p className="people text-muted">
                     {chat.participants.map((person) => {
 
                         // returning if person is not the currentUser to avoid unlogical list, because you
