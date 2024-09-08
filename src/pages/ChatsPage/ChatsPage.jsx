@@ -75,7 +75,7 @@ export const ChatsPage = () => {
             "ownerID": currentUser.id,
             "ownerName": currentUser.login,
             "message": newMessage,
-            "createdAt" : new Date(),
+            "createdAt" : new Date()
         }
 
         try {
@@ -109,7 +109,7 @@ export const ChatsPage = () => {
 
             {/* left side of the layout */}
             <div className="col-lg-2 col-md-3 col-sm-3 col-3 bg-light d-flex flex-column gap-3 p-3 shadow-lg border border-dark rounded sideBar">
-                
+                <h3 className="display-6 text-center">Your chats: </h3>
                 {/* displaying chats of user */}
                 {chats.map((chat)=>(
                     <div    className={`container-fluid d-flex flex-column shadow p-2 
