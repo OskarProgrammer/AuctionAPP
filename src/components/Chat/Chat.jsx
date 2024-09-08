@@ -38,7 +38,7 @@ export const Chat = () => {
             messages = await getChatMessages(chat.id)
 
             // setting messages
-            setMessages(messages)
+            setMessages(messages.reverse())
 
             // getting currentUser
             currentUser = await getCurrentUserInfo()
@@ -53,11 +53,11 @@ export const Chat = () => {
     })
 
     return (
-        <div className="container-fluid chatContainer p-3 shadow-lg border border-dark rounded">
+        <div className="container-fluid chatContainer d-flex flex-column-reverse p-3 shadow-lg border border-dark rounded">
             { messages.map( (message) => {
 
                 return (
-                    <div className={`message container-fluid d-flex flex-row text-dark ${ message.ownerID == currentUser.id ?
+                    <div className={`message container-fluid d-flex text-dark ${ message.ownerID == currentUser.id ?
                         "justify-content-end" : "justify-content-start"}`}>
                 
                         <MessageTab messageInfo={message} currentUser={currentUser}/>
