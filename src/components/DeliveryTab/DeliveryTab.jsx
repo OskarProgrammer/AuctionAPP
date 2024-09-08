@@ -3,7 +3,7 @@
 import "./DeliveryTab.css"
 
 // importing api functions
-import { getCurrentUserInfo, getRequest, postRequest, putRequest } from "../../api_functions/functions"
+import { getChatByName, getCurrentUserInfo, getRequest, postRequest, putRequest } from "../../api_functions/functions"
 
 // importing functions and components from react library
 import { useEffect, useState } from "react"
@@ -45,16 +45,17 @@ export const DeliveryTab = (props) => {
     }
 
     const createChat = async () => {
-        // getting current user info
-        const currentUser = await getCurrentUserInfo()
 
         // creating new chat object
         let newChat = {
             "id": crypto.randomUUID(),
             "participants": [ delivery.winnerID, delivery.ownerID],
-            "name": `${currentUser.login} | ${winnerInfo.login}`,
+            "name": `Order : ${delivery.id}`,
             "lastMessage": ""
         }
+
+        // checking if this conversation already exists
+        if (getChatByName(`Order : ${delivery.id}`) != null){ return }
 
         // posting new chat
         try {
