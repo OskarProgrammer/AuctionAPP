@@ -1,5 +1,5 @@
 .chatContainer {
-    height: 31rem;
+    height: 33rem;
     scroll-snap-type: x mandatory !important;
     overflow-y: auto;
 }

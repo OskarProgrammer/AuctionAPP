@@ -8,6 +8,9 @@ import { useEffect, useState } from "react"
 // importing api functions
 import { getChatMessages, getCurrentUserInfo, getRequest } from "../../api_functions/functions"
 
+// importing components
+import { messageLoader, MessageTab } from "../MessageTab/MessageTab"
+
 export const Chat = () => {
 
 
@@ -55,9 +58,7 @@ export const Chat = () => {
                 <div className={`message container-fluid d-flex flex-row text-dark ${ message.ownerID == currentUser.id ?
                     "justify-content-end" : "justify-content-start"}`}>
                     
-                    {/* message container */}
-                    { message.ownerID == currentUser.id ? <p className="fs-3 bg-primary text-light p-3 rounded">{message.message}</p> : 
-                    <p className="fs-3 bg-dark text-light p-3 rounded">{message.message}</p>}
+                    <MessageTab messageInfo={message} currentUser={currentUser}/>
 
                 </div>
             ))}
