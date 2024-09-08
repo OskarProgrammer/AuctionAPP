@@ -204,6 +204,20 @@ export const getChatMessages = async (chatID) => {
     return resultArray
 }
 
+// function getChatByName gets message with given name otherwise return null
+export const getChatByName = async (name) => {
+    // getting all chats
+    const chats = getRequest(`http://localhost:3000/chats/`)
+
+    // looping through array to find chat
+    chats.map((chat) => {
+        if (chat.name == name){ return chat}
+    })
+
+    // if not found return null
+    return null
+}
+
 // POST REQUESTS
 
 export const postRequest = async (endpoint, payload) => {
