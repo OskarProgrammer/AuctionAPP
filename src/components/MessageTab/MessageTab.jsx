@@ -6,43 +6,71 @@ import "./MessageTab.css"
 import { useState } from "react"
 
 // importing date functions
-import { getMinutesDiff, getSecondsDiff } from "../../date_functions/date_functions"
+import { getHoursDiff, getMinutesDiff, getSecondsDiff } from "../../date_functions/date_functions"
 
 export const MessageTab = (props) => {
 
-    // getting message from props
+    // getting data from props
+    // messageInfo
     const message = props.messageInfo
-
-    // getitng currentUser from props
+    // currentUser
     const currentUser = props.currentUser
 
     // creating useState variable isExpanded
     let [isExpanded, setIsExpanded] = useState(false)
 
     const diff = () =>{
-        
-        if (getSecondsDiff(new Date(), new Date(message.createdAt)) > 60){
-            return "Sent " + getMinutesDiff(new Date(), new Date(message.createdAt)) + " minutes ago"
-        } 
+        // creating format
+        const responseFormat = ( text ) =>{
+            return "Sent " + text + " ago"
+        }
 
-        return "Sent " + getSecondsDiff(new Date(), new Date(message.createdAt)) + " seconds ago"
+        // creating current date
+        const currentDate = new Date()
+
+        // getting diff between current date and date of creating the message
+        const secondsDiff = getSecondsDiff(currentDate, new Date(message.createdAt))
+        const minutesDiff = getMinutesDiff(currentDate, new Date(message.createdAt))
+        const hoursDiff = getHoursDiff(currentDate, new Date(message.createdAt))
+        
+        if ( secondsDiff > 60 ){
+            if ( minutesDiff > 60) {
+                return responseFormat(`${hoursDiff} hours`)
+            }else{
+                return responseFormat(`${minutesDiff} minutes`)
+            }
+        } else {
+            return responseFormat(`${secondsDiff} seconds`)
+        }
+
     }
 
+    // creating format of message
+    const timeOfSending = isExpanded ? <span className="text-center">{ diff() }</span> : ""
+
+    
     return (
         <>
 
             {/* message container */}
             { message.ownerID == currentUser.id ? 
-            <div className="d-flex flex-column my-2">
-                <span className="fs-3 bg-primary text-light p-3 rounded text-center messageSize text-wrap" onClick={()=>{setIsExpanded(!isExpanded)}} >{message.message}</span> 
-                {isExpanded ? <span className="text-center">{ diff() }</span> : ""}
-            </div>
-            : 
-            <div className="d-flex flex-column my-2 ">
-                <span className="fs-3 bg-dark text-light p-3 rounded text-center messageSize" onClick={()=>{setIsExpanded(!isExpanded)}} >{message.ownerName} : {message.message}</span>
-                {isExpanded ? <span className="text-center">{ diff() }</span> : ""}
-            </div>}
 
+                // displaying message from current user
+                <div className="d-flex flex-column my-2">
+                    
+                    <span className="fs-5 bg-primary text-light p-3 rounded text-center messageSize text-wrap" onClick={()=>{setIsExpanded(!isExpanded)}} >{message.message}</span> 
+                    {timeOfSending}
+
+                </div>
+                : 
+                // displaying message from other user
+                <div className="d-flex flex-column my-2 ">
+
+                    <span className="fs-5 bg-dark text-light p-3 rounded text-center messageSize" onClick={()=>{setIsExpanded(!isExpanded)}} >{message.ownerName} : {message.message}</span>
+                    {timeOfSending}
+
+                </div>
+            }
         </>
     )
 }

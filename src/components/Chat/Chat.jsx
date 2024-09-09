@@ -23,65 +23,76 @@ export const Chat = (props) => {
         id : ""
     })
 
-    // creasting useState variable messages
+    // creating useState variable messages
     let [messages, setMessages] = useState([])
 
 
     // useEffect function to fetch messages
     useEffect(()=>{
+        // creating interval
         const interval = setInterval( async () => {
 
-            // getting currentChat
+            // getting currentChat and setting chat
             chat = await getRequest(`http://localhost:3000/currentChat/`)
-
-            // setting chat
             setChat(chat)
 
-            // getting messages
+            // getting messages and setting messages
             messages = await getChatMessages(chat.id)
-
-            // setting messages
             setMessages(messages.reverse())
 
-            // getting currentUser
+            // getting currentUser and setting currentUser
             currentUser = await getCurrentUserInfo()
-        
-            // setting currentUser
             setCurrentUser(currentUser)
 
         }, 100)
 
-
         return () => { clearInterval(interval) }
+
     })
 
-    return (
-        <div className="container-fluid chatContainer d-flex flex-column-reverse p-3 shadow-lg border border-dark rounded">
+    const amountOfPeople = chat.participants.length-1
 
-            {messages.map( (message) => {
+    return (
+
+        // container of chat
+        <div className="container-fluid chatContainer 
+                        d-flex flex-column-reverse 
+                        p-3 
+                        shadow-lg 
+                        border border-dark rounded">
+
+            {/* displaying all messages from the array messages */}
+            { messages.map( (message) => {
+                const sideOfMessage = message.ownerID == currentUser.id ? "justify-content-end" : "justify-content-start"
 
                 return (
-                    <div className={`message container-fluid d-flex text-dark ${ message.ownerID == currentUser.id ?
-                        "justify-content-end" : "justify-content-start"}`}>
-                
-                        <MessageTab messageInfo={message} currentUser={currentUser}/>
-    
+                    <div className={`message container-fluid d-flex text-dark ${ sideOfMessage }`}>
+
+                        {/* message component */}
+                        <MessageTab messageInfo={message} 
+                                    currentUser={currentUser}/>
+
                     </div>
                 )
             })}
 
-            <h3 className="display-3 p-3 text-center">
-                Chat with {chat.participants.length-1}{chat.participants.length-1 == 1 ? " person" : " people"}<br/>
-            
+            {/* beginning header of chat */}
+            <h3 className=" display-3 
+                            p-3 
+                            text-center">
+                
+                {/* displaying amount of people */}
+                Chat with {amountOfPeople}{ amountOfPeople == 1 ? " person" : " people"}<br/>
+
+                {/* displaying people in taking part in group */}
                 <p className="people text-muted">
-                    {chat.participants.map((person) => {
+                    { chat.participants.map( (person) => {
 
                         // returning if person is not the currentUser to avoid unlogical list, because you
                         // are not chatting with yourself
                         if (person != currentUser.id) {
                             return <PersonTab personID={person}/>
                         }
-
                     })}
                 </p>
 
